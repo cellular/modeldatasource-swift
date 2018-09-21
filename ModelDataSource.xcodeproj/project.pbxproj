@@ -11,6 +11,16 @@
 		C425219D2154DD5700F2054C /* ModelDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C425219C2154DD5700F2054C /* ModelDataSourceTests.swift */; };
 		C425219F2154DD5700F2054C /* ModelDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = C42521912154DD5600F2054C /* ModelDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C42521AC2154DEEE00F2054C /* ModelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521AB2154DEEE00F2054C /* ModelCollection.swift */; };
+		C42521B02155275100F2054C /* ModelDataSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521AF2155275100F2054C /* ModelDataSourceView.swift */; };
+		C42521B22155277000F2054C /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521B12155277000F2054C /* Source.swift */; };
+		C42521B42155279800F2054C /* ModelDataSourceViewDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521B32155279800F2054C /* ModelDataSourceViewDisplayable.swift */; };
+		C42521B721552AE700F2054C /* ModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521B621552AE700F2054C /* ModelItem.swift */; };
+		C42521B921552B0F00F2054C /* ModelDecorative.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521B821552B0F00F2054C /* ModelDecorative.swift */; };
+		C42521BB21552B2A00F2054C /* ModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521BA21552B2A00F2054C /* ModelSection.swift */; };
+		C42521C021552BBF00F2054C /* TableView+ModelDataSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521BF21552BBF00F2054C /* TableView+ModelDataSourceView.swift */; };
+		C42521C221552BD700F2054C /* CollectionView+ModelDataSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C121552BD700F2054C /* CollectionView+ModelDataSourceView.swift */; };
+		C42521C521552C1B00F2054C /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C421552C1B00F2054C /* TableViewDataSource.swift */; };
+		C42521C721552C4600F2054C /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C621552C4600F2054C /* CollectionViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +41,16 @@
 		C425219C2154DD5700F2054C /* ModelDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataSourceTests.swift; sourceTree = "<group>"; };
 		C425219E2154DD5700F2054C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C42521AB2154DEEE00F2054C /* ModelCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCollection.swift; sourceTree = "<group>"; };
+		C42521AF2155275100F2054C /* ModelDataSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataSourceView.swift; sourceTree = "<group>"; };
+		C42521B12155277000F2054C /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		C42521B32155279800F2054C /* ModelDataSourceViewDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataSourceViewDisplayable.swift; sourceTree = "<group>"; };
+		C42521B621552AE700F2054C /* ModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelItem.swift; sourceTree = "<group>"; };
+		C42521B821552B0F00F2054C /* ModelDecorative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDecorative.swift; sourceTree = "<group>"; };
+		C42521BA21552B2A00F2054C /* ModelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSection.swift; sourceTree = "<group>"; };
+		C42521BF21552BBF00F2054C /* TableView+ModelDataSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+ModelDataSourceView.swift"; sourceTree = "<group>"; };
+		C42521C121552BD700F2054C /* CollectionView+ModelDataSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+ModelDataSourceView.swift"; sourceTree = "<group>"; };
+		C42521C421552C1B00F2054C /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		C42521C621552C4600F2054C /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +120,51 @@
 		C42521AA2154DEDF00F2054C /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C42521AB2154DEEE00F2054C /* ModelCollection.swift */,
+				C42521C321552C0900F2054C /* DataSource */,
+				C42521BE21552B9200F2054C /* UIKit */,
+				C42521B521552AC700F2054C /* Collection */,
+				C42521AE2155272400F2054C /* View */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		C42521AE2155272400F2054C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C42521AF2155275100F2054C /* ModelDataSourceView.swift */,
+				C42521B12155277000F2054C /* Source.swift */,
+				C42521B32155279800F2054C /* ModelDataSourceViewDisplayable.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C42521B521552AC700F2054C /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				C42521AB2154DEEE00F2054C /* ModelCollection.swift */,
+				C42521B621552AE700F2054C /* ModelItem.swift */,
+				C42521B821552B0F00F2054C /* ModelDecorative.swift */,
+				C42521BA21552B2A00F2054C /* ModelSection.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		C42521BE21552B9200F2054C /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				C42521BF21552BBF00F2054C /* TableView+ModelDataSourceView.swift */,
+				C42521C121552BD700F2054C /* CollectionView+ModelDataSourceView.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		C42521C321552C0900F2054C /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				C42521C421552C1B00F2054C /* TableViewDataSource.swift */,
+				C42521C621552C4600F2054C /* CollectionViewDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,7 +276,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C42521B42155279800F2054C /* ModelDataSourceViewDisplayable.swift in Sources */,
+				C42521C721552C4600F2054C /* CollectionViewDataSource.swift in Sources */,
 				C42521AC2154DEEE00F2054C /* ModelCollection.swift in Sources */,
+				C42521B721552AE700F2054C /* ModelItem.swift in Sources */,
+				C42521C021552BBF00F2054C /* TableView+ModelDataSourceView.swift in Sources */,
+				C42521B921552B0F00F2054C /* ModelDecorative.swift in Sources */,
+				C42521C221552BD700F2054C /* CollectionView+ModelDataSourceView.swift in Sources */,
+				C42521C521552C1B00F2054C /* TableViewDataSource.swift in Sources */,
+				C42521B02155275100F2054C /* ModelDataSourceView.swift in Sources */,
+				C42521BB21552B2A00F2054C /* ModelSection.swift in Sources */,
+				C42521B22155277000F2054C /* Source.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
