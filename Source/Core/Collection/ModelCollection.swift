@@ -4,43 +4,49 @@ import UIKit
 public protocol ModelCollection: MutableCollection, RandomAccessCollection, RangeReplaceableCollection where Self.Element == ModelSection<Self.DataSourceView>, Self.Index == Int {
 
     associatedtype DataSourceView: ModelDataSourceView
-    associatedtype Storage: MutableCollection, RandomAccessCollection, RangeReplaceableCollection where Storage.Element == Self.Element, Storage.Index == Self.Index
-    var storage: Storage { get set }
+    associatedtype Buffer: MutableCollection, RandomAccessCollection, RangeReplaceableCollection where Buffer.Element == Self.Element, Buffer.Index == Self.Index
+    var buffer: Buffer { get set }
 }
+
+// MARK: - MutableCollection, RandomAccessCollection, RangeReplaceableCollection
 
 public extension ModelCollection {
 
     public var startIndex: Int {
-        return storage.startIndex
+        return buffer.startIndex
     }
 
     public var endIndex: Int {
-        return storage.endIndex
+        return buffer.endIndex
     }
 
     public subscript(index: Int) -> ModelSection<DataSourceView> {
         get {
-            return storage[index]
+            return buffer[index]
         }
         set(section) {
-            storage[index] = section
+            buffer[index] = section
         }
     }
 
     public func index(after index: Int) -> Int {
-        return storage.index(after: index)
+        return buffer.index(after: index)
     }
 
+    public mutating func replaceSubrange<C>(_ subrange: Range<Int>, with newElements: C) where C : Collection, Self.Element == C.Element {
+        buffer.replaceSubrange(subrange, with: newElements)
+    }
+}
+
+// MARK: - Convenience
+
+extension ModelCollection {
+
     public subscript(indexPath: IndexPath) -> ModelItem<DataSourceView> {
-        return storage[indexPath.section][indexPath.item]
+        return buffer[indexPath.section][indexPath.item]
     }
 
     public subscript(section: Int, kind: DataSourceView.DecorativeKind) -> ModelDecorative<DataSourceView>? {
         return self[section].decoratives[kind]
     }
-
-    public mutating func replaceSubrange<C>(_ subrange: Range<Int>, with newElements: C) where C : Collection, Self.Element == C.Element {
-        storage.replaceSubrange(subrange, with: newElements)
-    }
 }
-

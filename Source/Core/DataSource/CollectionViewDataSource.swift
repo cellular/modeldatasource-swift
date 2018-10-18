@@ -3,8 +3,8 @@ import UIKit
 open class CollectionViewDataSource: NSObject, ModelCollection {
 
     public typealias DataSourceView = UICollectionView
-    public typealias Storage = [ModelSection<UICollectionView>]
-    public var storage: [ModelSection<UICollectionView>] = []
+    public typealias Buffer = [ModelSection<UICollectionView>]
+    public var buffer: [ModelSection<UICollectionView>] = []
 
     open weak var delegate: CollectionViewDataSourceDelegate?
 

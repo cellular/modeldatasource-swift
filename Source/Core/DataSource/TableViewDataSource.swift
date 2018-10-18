@@ -4,9 +4,9 @@ import UIKit
 open class TableViewDataSource: NSObject, ModelCollection {
 
     public typealias DataSourceView = UITableView
-    public typealias Storage = [ModelSection<UITableView>]
+    public typealias Buffer = [ModelSection<UITableView>]
 
-    public var storage: Storage = []
+    public var buffer: Buffer = []
 
     open weak var delegate: TableViewDataSourceDelegate?
 
