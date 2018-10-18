@@ -31,7 +31,6 @@ extension UICollectionView: ModelDataSourceView {
     public typealias DecorativeKind = UICollectionViewDecorativeKind
     public typealias DecorativeView = UICollectionReusableView
 
-
     // MARK: Registry
 
     /**

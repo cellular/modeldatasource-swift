@@ -3,18 +3,27 @@ import Foundation
 public struct ModelSection<V: ModelDataSourceView>: MutableCollection, RandomAccessCollection, RangeReplaceableCollection {
 
     public typealias DataSourceView = V
-    public typealias Element = ModelItem<V>
+    public typealias Element = ModelItem<DataSourceView>
     public typealias Index = Int
 
-    private(set) public var items: [Element]
-    private(set) public var decoratives: [DataSourceView.DecorativeKind: ModelDecorative<V>]
+    private var items: [Element]
+    private var decoratives: [DataSourceView.DecorativeKind: ModelDecorative<DataSourceView>]
 
     public var startIndex: Index { return items.startIndex }
     public var endIndex: Index { return items.endIndex }
 
+    /// Empty initializer required by RangeReplaceableCollection
     public init() {
-        items = []
-        decoratives = [:]
+        self.init(decoratives: [:], items: [])
+    }
+
+    public init(decoratives: [DataSourceView.DecorativeKind: ModelDecorative<V>], items: [Element]) {
+        self.decoratives = decoratives
+        self.items = items
+    }
+
+    public init(decorative: ModelDecorative<DataSourceView>, kind: DataSourceView.DecorativeKind) {
+        self.init(decoratives: [kind: decorative], items: [])
     }
 
     public func index(after index: Int) -> Int {
@@ -25,8 +34,30 @@ public struct ModelSection<V: ModelDataSourceView>: MutableCollection, RandomAcc
         get {
             return items[index]
 
-        } set {
+        }
+        set {
             items[index] = newValue
         }
     }
+
+    public subscript(kind: DataSourceView.DecorativeKind) -> ModelDecorative<DataSourceView>? {
+        get {
+            return decoratives[kind]
+        }
+        set {
+            guard let newValue = newValue else { return }
+            decoratives[kind] = newValue
+        }
+    }
 }
+
+public extension ModelSection {
+
+    func find(_ cell: DataSourceView.Cell.Type) -> [Index] {
+        return enumerated().compactMap { item in
+            return item.element.cell == cell ? item.offset : nil
+        }
+    }
+}
+
+

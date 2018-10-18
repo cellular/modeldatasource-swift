@@ -2,13 +2,17 @@ import UIKit
 
 open class CollectionViewDataSource: NSObject, ModelCollection {
 
+    // MARK: ModelCollection
     public typealias DataSourceView = UICollectionView
-    public typealias Buffer = [ModelSection<UICollectionView>]
-    public var buffer: [ModelSection<UICollectionView>] = []
+    // swiftlint:disable syntactic_sugar
+    public typealias Buffer = Array<ModelSection<UICollectionView>>
+    // swiftlint:enable syntactic_sugar
+    public var buffer: Buffer
 
     open weak var delegate: CollectionViewDataSourceDelegate?
 
     required override public init() {
+        buffer = []
         super.init()
     }
 }
@@ -33,7 +37,6 @@ extension CollectionViewDataSource: UICollectionViewDataSource {
         return self[section].count
     }
 
-
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self[indexPath].reuseIdentifier, for: indexPath)
         delegate?.collectionView?(collectionView, prepareModelCell: cell, atIndexPath: indexPath)
@@ -44,10 +47,8 @@ extension CollectionViewDataSource: UICollectionViewDataSource {
                              viewForSupplementaryElementOfKind kind: String,
                              at indexPath: IndexPath) -> UICollectionReusableView {
 
-
         guard let decorativeKind = UICollectionViewDecorativeKind(string: kind),
             let reuseIdentifier = self[indexPath.section, decorativeKind]?.reuseIdentifier else {
-
                 fatalError("CollectionViewDataSource - could not dequeue collection decorative view of kind: \(kind) at: \(indexPath)")
         }
 

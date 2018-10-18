@@ -1,16 +1,18 @@
-
 import UIKit
 
 open class TableViewDataSource: NSObject, ModelCollection {
 
+    // MARK: ModelCollection
     public typealias DataSourceView = UITableView
-    public typealias Buffer = [ModelSection<UITableView>]
-
-    public var buffer: Buffer = []
+    // swiftlint:disable syntactic_sugar
+    public typealias Buffer = Array<ModelSection<UITableView>>
+    // swiftlint:enable syntactic_sugar
+    public var buffer: Buffer
 
     open weak var delegate: TableViewDataSourceDelegate?
 
     required public override init() {
+        buffer = []
         super.init()
     }
 }

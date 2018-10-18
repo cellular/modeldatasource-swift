@@ -13,3 +13,4 @@ public protocol ModelDataSourceView: class {
     /// The descriptor of the decorative view positioning (e.g. TableView Header or Footer)
     associatedtype DecorativeKind: Hashable
 }
+
