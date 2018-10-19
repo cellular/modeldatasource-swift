@@ -1,5 +1,9 @@
 import UIKit
 
+/// UICollectionViews do not support decorations other than section header or footer.
+///
+/// - header: Section header kind identifier
+/// - footer: Section footer kind identifier
 public enum UICollectionViewDecorativeKind: CustomStringConvertible {
     case header
     case footer
@@ -33,12 +37,10 @@ extension UICollectionView: ModelDataSourceView {
 
     // MARK: Registry
 
-    /**
-     Allows to register classes of model data source view displayable views directly with their appropriate
-     reuse identifier and their source file defintion (class or nib).
-
-     - parameter view: The view type which should be registered to the data source view.
-     */
+    /// Allows to register classes of model data source view cells directly with their
+    /// appropriate reuse identifier and their source file defintion (class or nib).
+    ///
+    /// - Parameter cell: The cell type which should be registered to the table view.
     public func register<D>(_ view: D.Type) where D: UICollectionViewCell, D: ModelDataSourceViewDisplayable {
         switch view.source {
         case let .view(viewClass):
@@ -50,12 +52,12 @@ extension UICollectionView: ModelDataSourceView {
         }
     }
 
-    /**
-     Allows to register classes of model data source view decorative views directly with their appropriate
-     reuse identifier and their source file defintion (class or nib).
-
-     - parameter view: The view type which should be registered to the data source view.
-     */
+    /// Allows to register classes of model data source decorative views directly with
+    /// their appropriate reuse identifier and their source file defintion (class or nib).
+    ///
+    /// - Parameters:
+    ///   - view: The view type which should be registered to the data source view.
+    ///   - decorativeKind: Tge decorative kind of the view to register.
     public func register<D>(_ view: D.Type, as decorativeKind: DecorativeKind)
         where D: UICollectionReusableView, D: ModelDataSourceViewDisplayable {
 

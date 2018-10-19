@@ -67,52 +67,13 @@ public extension ModelCollection {
             buffer[index] = newValue
         }
     }
-
-    /// Returns the position immediately after the given index.
-    ///
-    /// - Parameter i: A valid index of the collection. `i` must be less than
-    ///   `endIndex`.
-    /// - Returns: The index value immediately after `i`.
-    public func index(after index: Index) -> Int {
-        return buffer.index(after: index)
-    }
-
-    /// Replaces the specified subrange of elements with the given collection.
-    ///
-    /// This method has the effect of removing the specified range of elements
-    /// from the collection and inserting the new elements at the same location.
-    /// The number of new elements need not match the number of elements being
-    /// removed.
-    ///
-    /// If you pass a zero-length range as the `subrange` parameter, this method
-    /// inserts the elements of `newElements` at `subrange.startIndex`. Calling
-    /// the `insert(contentsOf:at:)` method instead is preferred.
-    ///
-    /// Likewise, if you pass a zero-length collection as the `newElements`
-    /// parameter, this method removes the elements in the given subrange
-    /// without replacement. Calling the `removeSubrange(_:)` method instead is
-    /// preferred.
-    ///
-    /// Calling this method may invalidate any existing indices for use with this
-    /// collection.
-    ///
-    /// - Parameters:
-    ///   - subrange: The subrange of the collection to replace. The bounds of
-    ///     the range must be valid indices of the collection.
-    ///   - newElements: The new elements to add to the collection.
-    ///
-    /// - Complexity: O(*n* + *m*), where *n* is length of this collection and
-    ///   *m* is the length of `newElements`. If the call to this method simply
-    ///   appends the contents of `newElements` to the collection, this method is
-    ///   equivalent to `append(contentsOf:)`.
-    public mutating func replaceSubrange<C>(_ subrange: Range<Index>, with newElements: C) where C: Collection, Self.Element == C.Element {
-        buffer.replaceSubrange(subrange, with: newElements)
-    }
 }
 
 // MARK: - Convenience
 
 public extension ModelCollection {
+
+    // MARK: Subscript
 
     /// Accesses the element at the specified position.
     ///
@@ -142,9 +103,11 @@ public extension ModelCollection {
     /// past the last element of a collection, so it doesn't correspond with an
     /// element.
     ///
-    /// - Parameter position: The position of the element to access. `position`
+    /// - Parameter:
+    ///   - section: The position of the element to access. `section`
     ///   must be a valid index of the collection that is not equal to the
     ///   `endIndex` property.
+    ///   - kind: The kind of the decorative view to access.
     ///
     /// - Complexity: O(1)
     subscript(section: Index, kind: DataSourceView.DecorativeKind) -> ModelDecorative<DataSourceView>? {
@@ -155,6 +118,38 @@ public extension ModelCollection {
             self[section][kind] = newValue
         }
     }
+
+    // MARK: Search
+
+    /// Searches for cells matching the given cell type.
+    ///
+    /// - Parameter cell: Type of the cell to find.
+    /// - Returns: Returns positions of the found cells.
+    func find(_ cell: DataSourceView.Cell.Type) -> [IndexPath] {
+        return enumerated().reduce(into: [IndexPath]()) { (result, sectionItem)  in
+            let section = sectionItem.offset
+            let paths = self[section].find(cell).map { IndexPath.init(item: $0, section: section) }
+            result.append(contentsOf: paths)
+        }
+    }
+
+    /// Checks if the indexPath points to the last cell in the section
+    ///
+    /// - Parameter indexPath: Position of the cell
+    /// - Returns: Returns true indexPath equals last valid index in section
+    func isLastCellInSection(_ indexPath: IndexPath) -> Bool {
+        return indexPath.item == (self[indexPath.section].endIndex - 1)
+    }
+
+    /// Checks if the given index is the last section
+    ///
+    /// - Parameter section: Section index
+    /// - Returns: True if the given index is the last section.
+    func isLastSection(_ section: Index) -> Bool {
+        return section == (endIndex - 1)
+    }
+
+    // MARK: Create
 
     /// Appends a section to self.
     ///
@@ -256,13 +251,7 @@ public extension ModelCollection {
         self[indexPath.section].insert(item, at: indexPath.item)
     }
 
-    func find(_ cell: DataSourceView.Cell.Type) -> [IndexPath] {
-        return enumerated().reduce(into: [IndexPath]()) { (result, sectionItem)  in
-            let section = sectionItem.offset
-            let paths = self[section].find(cell).map { IndexPath.init(item: $0, section: section) }
-            result.append(contentsOf: paths)
-        }
-    }
+    // MARK: Delete
 
     /// Removes all elements from the section.
     ///
@@ -340,29 +329,14 @@ public extension ModelCollection {
         }
     }
 
-    /// Rmeoves decorative in the given sectio
+    /// Rmeoves decorative in the given section
     ///
     /// - Parameters:
     ///   - ofKind: The type of the decorative view.
     ///   - inSection: The section which contains the decorative view.
+    /// - Returns: Removed Decorative or nil
     @discardableResult
     mutating func remove(decorative ofKind: DataSourceView.DecorativeKind, inSection: Index) -> ModelDecorative<DataSourceView>? {
         return self[inSection].remove(decorative: ofKind)
-    }
-
-    /// Checks if the indexPath points to the last cell in the section
-    ///
-    /// - Parameter indexPath: Position of the cell
-    /// - Returns: Returns true indexPath equals last valid index in section
-    func isLastCellInSection(_ indexPath: IndexPath) -> Bool {
-        return indexPath.item == (self[indexPath.section].endIndex - 1)
-    }
-
-     /// Checks if the given index is the last section
-     ///
-     /// - Parameter section: Section index
-     /// - Returns: True if the given index is the last section.
-     func isLastSection(_ section: Index) -> Bool {
-        return section == (endIndex - 1)
     }
 }

@@ -1,11 +1,9 @@
 import UIKit
 
-/**
- UITableViews do not support decorations other than section header or footer.
-
- - Header: Section header kind identifier
- - Footer: Section footer kind identifier
- */
+/// UITableViews do not support decorations other than section header or footer.
+///
+/// - header: Section header kind identifier
+/// - footer: Section footer kind identifier
 public enum UITableViewDecorativeKind: String {
     case header
     case footer
@@ -18,14 +16,10 @@ extension UITableView: ModelDataSourceView {
     public typealias DecorativeView = UITableViewHeaderFooterView
     public typealias DecorativeKind = UITableViewDecorativeKind
 
-    // MARK: Registry
-
-    /**
-     Allows to register classes of model data source view cells directly with their
-     appropriate reuse identifier and their source file defintion (class or nib).
-
-     - parameter cell: The cell type which should be registered to the table view.
-     */
+    /// Allows to register classes of model data source view cells directly with their
+    /// appropriate reuse identifier and their source file defintion (class or nib).
+    ///
+    /// - Parameter cell: The cell type which should be registered to the table view.
     public func register<C>(_ cell: C.Type) where C: UITableViewCell, C: ModelDataSourceViewDisplayable {
         switch cell.source {
         case let .view(viewClass):
@@ -37,12 +31,10 @@ extension UITableView: ModelDataSourceView {
         }
     }
 
-    /**
-     Allows to register classes of model data source decorative views directly with
-     their appropriate reuse identifier and their source file defintion (class or nib).
-
-     - parameter view: The view type which should be registered to the table view.
-     */
+    /// Allows to register classes of model data source decorative views directly with
+    /// their appropriate reuse identifier and their source file defintion (class or nib).
+    ///
+    /// - Parameter view: The view type which should be registered to the table view.
     public func register<D>(_ view: D.Type) where D: UITableViewHeaderFooterView, D: ModelDataSourceViewDisplayable {
         switch view.source {
         case let .view(viewClass):
