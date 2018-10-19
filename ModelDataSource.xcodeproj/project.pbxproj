@@ -24,6 +24,7 @@
 		C4AE1A30217A1C11007CD299 /* ModelCollection+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE1A2F217A1C11007CD299 /* ModelCollection+Deprecated.swift */; };
 		C4AE1A32217A2593007CD299 /* TableViewDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE1A31217A2593007CD299 /* TableViewDataSourceDelegate.swift */; };
 		C4AE1A34217A26D5007CD299 /* CollectionViewDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE1A33217A26D5007CD299 /* CollectionViewDataSourceDelegate.swift */; };
+		C4AE1A38217A2C02007CD299 /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE1A35217A2BBB007CD299 /* TestTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		C4AE1A2F217A1C11007CD299 /* ModelCollection+Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelCollection+Deprecated.swift"; sourceTree = "<group>"; };
 		C4AE1A31217A2593007CD299 /* TableViewDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceDelegate.swift; sourceTree = "<group>"; };
 		C4AE1A33217A26D5007CD299 /* CollectionViewDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSourceDelegate.swift; sourceTree = "<group>"; };
+		C4AE1A35217A2BBB007CD299 /* TestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				C425219C2154DD5700F2054C /* ModelDataSourceTests.swift */,
+				C4AE1A35217A2BBB007CD299 /* TestTableViewCell.swift */,
 				C425219E2154DD5700F2054C /* Info.plist */,
 			);
 			path = Tests;
@@ -328,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C425219D2154DD5700F2054C /* ModelDataSourceTests.swift in Sources */,
+				C4AE1A38217A2C02007CD299 /* TestTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,7 +527,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AYW29B44VY;
-				INFOPLIST_FILE = ModelDataSourceTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -542,7 +546,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AYW29B44VY;
-				INFOPLIST_FILE = ModelDataSourceTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

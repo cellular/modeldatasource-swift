@@ -20,3 +20,18 @@ public protocol ModelDataSourceViewDisplayable: class {
     /// Model that was associated with the cell on initialization or reuse.
     var model: Model? { get set }
 }
+
+// MARK: - Defaults
+
+public extension ModelDataSourceViewDisplayable {
+
+    /// Defaults to the class name of the view. Raw class name only, no module or hash attached.
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+
+    /// Optional fixed size definition to override dynamic height calculations.
+    public static var staticSize: Size? {
+        return nil
+    }
+}
