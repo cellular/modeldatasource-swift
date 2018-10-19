@@ -1,11 +1,3 @@
-//
-//  ModelCollection+Deprecated.swift
-//  ModelDataSource
-//
-//  Created by Michael Hass on 19.10.18.
-//  Copyright © 2018 CELLULAR GmbH. All rights reserved.
-//
-
 import Foundation
 
 // MARK: - Deprecated API

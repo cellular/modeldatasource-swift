@@ -14,9 +14,7 @@ public struct ModelDecorative<V: ModelDataSourceView> {
     /// The variable/dynamic dimension of the cell for sizing calculations.
     public var size: V.Dimension?
 
-    public init<M, D: ModelDataSourceViewDisplayable>(model: M, view: D.Type)
-        where D.Model == M, D.Size == V.Dimension {
-
+    public init<M, D: ModelDataSourceViewDisplayable>(model: M, view: D.Type) where D.Model == M, D.Size == V.Dimension {
         self.model = model
         self.view = view
         self.reuseIdentifier = view.reuseIdentifier

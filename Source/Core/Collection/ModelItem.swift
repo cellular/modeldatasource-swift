@@ -11,7 +11,7 @@ public struct ModelItem<V: ModelDataSourceView> {
     /// Cell reuse identifier stored within `self`.
     public var reuseIdentifier: String
 
-     /// The variable/dynamic dimension of the cell for sizing calculations.
+    /// The variable/dynamic dimension of the cell for sizing calculations.
     public var size: V.Dimension?
 
     public init<M, C: ModelDataSourceViewDisplayable>(model: M, cell: C.Type) where C.Model == M, C.Size == V.Dimension {
