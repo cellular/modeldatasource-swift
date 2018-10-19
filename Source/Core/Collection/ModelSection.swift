@@ -17,7 +17,7 @@ public struct ModelSection<V: ModelDataSourceView>: MutableCollection, RandomAcc
         self.init(decoratives: [:], items: [])
     }
 
-    public init(decoratives: [DataSourceView.DecorativeKind: ModelDecorative<V>], items: [Element]) {
+    public init(decoratives: [DataSourceView.DecorativeKind: ModelDecorative<DataSourceView>], items: [Element]) {
         self.decoratives = decoratives
         self.items = items
     }
@@ -45,11 +45,12 @@ public struct ModelSection<V: ModelDataSourceView>: MutableCollection, RandomAcc
             return decoratives[kind]
         }
         set {
-            guard let newValue = newValue else { return }
             decoratives[kind] = newValue
         }
     }
 }
+
+// MARK: - Convenience
 
 public extension ModelSection {
 
@@ -58,6 +59,10 @@ public extension ModelSection {
             return item.element.cell == cell ? item.offset : nil
         }
     }
+
+    mutating func remove(decorative kind: DataSourceView.DecorativeKind) -> ModelDecorative<DataSourceView>? {
+        let decorativeToRemove = self[kind]
+        self[kind] = nil
+        return decorativeToRemove
+    }
 }
-
-
