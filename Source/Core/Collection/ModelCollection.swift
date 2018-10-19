@@ -27,14 +27,38 @@ public protocol ModelCollection: MutableCollection, RandomAccessCollection, Rang
 
 public extension ModelCollection {
 
+    /// The position of the first element in a nonempty collection.
+    ///
+    /// If the collection is empty, `startIndex` is equal to `endIndex`.
     public var startIndex: Index {
         return buffer.startIndex
     }
 
+    /// The collection's "past the end" position---that is, the position one
+    /// greater than the last valid subscript argument.
+    ///
+    /// When you need a range that includes the last element of a collection, use
+    /// the half-open range operator (`..<`) with `endIndex`. The `..<` operator
+    /// creates a range that doesn't include the upper bound, so it's always
+    /// safe to use with `endIndex`. For example:
+    ///
+    /// If the collection is empty, `endIndex` is equal to `startIndex`.
     public var endIndex: Index {
         return buffer.endIndex
     }
 
+    /// Accesses the element at the specified position.
+    ///
+    /// You can subscript a collection with any valid index other than the
+    /// collection's end index. The end index refers to the position one
+    /// past the last element of a collection, so it doesn't correspond with an
+    /// element.
+    ///
+    /// - Parameter position: The position of the element to access. `position`
+    ///   must be a valid index of the collection that is not equal to the
+    ///   `endIndex` property.
+    ///
+    /// - Complexity: O(1)
     public subscript(index: Index) -> ModelSection<DataSourceView> {
         get {
             return buffer[index]
@@ -44,10 +68,43 @@ public extension ModelCollection {
         }
     }
 
+    /// Returns the position immediately after the given index.
+    ///
+    /// - Parameter i: A valid index of the collection. `i` must be less than
+    ///   `endIndex`.
+    /// - Returns: The index value immediately after `i`.
     public func index(after index: Index) -> Int {
         return buffer.index(after: index)
     }
 
+    /// Replaces the specified subrange of elements with the given collection.
+    ///
+    /// This method has the effect of removing the specified range of elements
+    /// from the collection and inserting the new elements at the same location.
+    /// The number of new elements need not match the number of elements being
+    /// removed.
+    ///
+    /// If you pass a zero-length range as the `subrange` parameter, this method
+    /// inserts the elements of `newElements` at `subrange.startIndex`. Calling
+    /// the `insert(contentsOf:at:)` method instead is preferred.
+    ///
+    /// Likewise, if you pass a zero-length collection as the `newElements`
+    /// parameter, this method removes the elements in the given subrange
+    /// without replacement. Calling the `removeSubrange(_:)` method instead is
+    /// preferred.
+    ///
+    /// Calling this method may invalidate any existing indices for use with this
+    /// collection.
+    ///
+    /// - Parameters:
+    ///   - subrange: The subrange of the collection to replace. The bounds of
+    ///     the range must be valid indices of the collection.
+    ///   - newElements: The new elements to add to the collection.
+    ///
+    /// - Complexity: O(*n* + *m*), where *n* is length of this collection and
+    ///   *m* is the length of `newElements`. If the call to this method simply
+    ///   appends the contents of `newElements` to the collection, this method is
+    ///   equivalent to `append(contentsOf:)`.
     public mutating func replaceSubrange<C>(_ subrange: Range<Index>, with newElements: C) where C: Collection, Self.Element == C.Element {
         buffer.replaceSubrange(subrange, with: newElements)
     }
@@ -307,85 +364,5 @@ public extension ModelCollection {
      /// - Returns: True if the given index is the last section.
      func isLastSection(_ section: Index) -> Bool {
         return section == (endIndex - 1)
-    }
-}
-
-// MARK: - Deprecated API
-
-public extension ModelCollection {
-
-    @available(*, deprecated: 5.0, message: "use subscript[section].isEmpty instead")
-    func isEmptySection(_ section: Index) -> Bool {
-        return self[section].isEmpty
-    }
-
-    @available(*, deprecated: 5.0, message: "use subscript[section].count instead")
-    func countInSection(_ section: Int) -> Int {
-        return self[section].count
-    }
-
-    @available(*, deprecated: 5.0, renamed: "append(section:)")
-    @discardableResult
-    mutating func appendSection(_ section: ModelSection<DataSourceView> = ModelSection()) -> Index {
-        return append(section: section)
-    }
-
-    @available(*, deprecated: 5.0, message: "Create a ModelSection and append it instead.")
-    @discardableResult
-    mutating func appendSection<M, D: ModelDataSourceViewDisplayable>(_ model: M, view: D.Type, ofKind kind: DataSourceView.DecorativeKind)
-        -> Int where D.Model == M, D.Size == DataSourceView.Dimension {
-
-        return appendSection(.init(decorative: .init(model: model, view: view), kind: kind))
-    }
-
-    @available(*, deprecated: 5.0, renamed: "append(decorative:ofKind:)")
-    @discardableResult
-    mutating func append<M, D: ModelDataSourceViewDisplayable>(_ model: M,
-                                                               view: D.Type,
-                                                               ofKind: DataSourceView.DecorativeKind,
-                                                               inSection: Index? = nil)
-                                                               -> Index where D.Model == M, D.Size == DataSourceView.Dimension {
-
-        return append(decorative: .init(model: model, view: view), ofKind: ofKind)
-    }
-
-    @discardableResult
-    @available(*, deprecated: 5.0, renamed: "append(item:inSection:)")
-    mutating func append<M, C: ModelDataSourceViewDisplayable>(_ model: M, cell: C.Type, inSection: Index? = nil)
-        -> IndexPath where C.Model == M, C.Size == DataSourceView.Dimension {
-
-        return append(item: .init(model: model, cell: cell), inSection: inSection)
-    }
-
-    @available(*, deprecated: 5.0, renamed: "append(contentsOf:cell:inSection)")
-    @discardableResult
-    mutating func appendContentsOf<M, C: ModelDataSourceViewDisplayable>(_ models: [M],
-                                                                         cell: C.Type,
-                                                                         inSection: Index? = ni) -> [IndexPath] where C.Model == M,
-        C.Size == DataSourceView.Dimension {
-        return append(contentsOf: models, cell: cell, inSection: section)
-    }
-
-    @available(*, deprecated: 5.0, renamed: "insert(_:index:)")
-    mutating func insert<M, C: ModelDataSourceViewDisplayable>(_ model: M, cell: C.Type, index: IndexPath) where C.Model == M,
-        C.Size == DataSourceView.Dimension {
-
-        insert(.init(model: model, cell: cell), indexPath: index)
-    }
-
-    @available(*, deprecated: 5.0, renamed: "remove(at:)")
-    @discardableResult
-    mutating func removeAtIndex(_ index: IndexPath) -> ModelItem<DataSourceView> {
-        return remove(at: index)
-    }
-
-    mutating func removeAtIndex(_ indices: [Int]) -> [ModelSection<DataSourceView>] {
-
-        return remove(at: Set(indices))
-    }
-
-    mutating func bla<M, D: ModelDataSourceViewDisplayable>(_ model: M, view: D.Type)
-        -> Int where D.Model == M, D.Size == DataSourceView.Dimension {
-        return 0
     }
 }

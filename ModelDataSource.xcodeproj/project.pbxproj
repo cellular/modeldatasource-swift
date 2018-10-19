@@ -21,6 +21,7 @@
 		C42521C221552BD700F2054C /* CollectionView+ModelDataSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C121552BD700F2054C /* CollectionView+ModelDataSourceView.swift */; };
 		C42521C521552C1B00F2054C /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C421552C1B00F2054C /* TableViewDataSource.swift */; };
 		C42521C721552C4600F2054C /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C621552C4600F2054C /* CollectionViewDataSource.swift */; };
+		C4AE1A30217A1C11007CD299 /* ModelCollection+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE1A2F217A1C11007CD299 /* ModelCollection+Deprecated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		C42521C121552BD700F2054C /* CollectionView+ModelDataSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+ModelDataSourceView.swift"; sourceTree = "<group>"; };
 		C42521C421552C1B00F2054C /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		C42521C621552C4600F2054C /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
+		C4AE1A2F217A1C11007CD299 /* ModelCollection+Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelCollection+Deprecated.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				C42521AB2154DEEE00F2054C /* ModelCollection.swift */,
+				C4AE1A2F217A1C11007CD299 /* ModelCollection+Deprecated.swift */,
 				C42521B621552AE700F2054C /* ModelItem.swift */,
 				C42521B821552B0F00F2054C /* ModelDecorative.swift */,
 				C42521BA21552B2A00F2054C /* ModelSection.swift */,
@@ -301,6 +304,7 @@
 				C42521C721552C4600F2054C /* CollectionViewDataSource.swift in Sources */,
 				C42521AC2154DEEE00F2054C /* ModelCollection.swift in Sources */,
 				C42521B721552AE700F2054C /* ModelItem.swift in Sources */,
+				C4AE1A30217A1C11007CD299 /* ModelCollection+Deprecated.swift in Sources */,
 				C42521C021552BBF00F2054C /* TableView+ModelDataSourceView.swift in Sources */,
 				C42521B921552B0F00F2054C /* ModelDecorative.swift in Sources */,
 				C42521C221552BD700F2054C /* CollectionView+ModelDataSourceView.swift in Sources */,
