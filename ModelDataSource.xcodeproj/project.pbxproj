@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C42521982154DD5700F2054C /* ModelDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C425218E2154DD5600F2054C /* ModelDataSource.framework */; };
-		C425219D2154DD5700F2054C /* ModelDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C425219C2154DD5700F2054C /* ModelDataSourceTests.swift */; };
+		C425219D2154DD5700F2054C /* TableViewDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C425219C2154DD5700F2054C /* TableViewDataSourceTests.swift */; };
 		C425219F2154DD5700F2054C /* ModelDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = C42521912154DD5600F2054C /* ModelDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C42521AC2154DEEE00F2054C /* ModelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521AB2154DEEE00F2054C /* ModelCollection.swift */; };
 		C42521B02155275100F2054C /* ModelDataSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521AF2155275100F2054C /* ModelDataSourceView.swift */; };
@@ -42,7 +42,7 @@
 		C42521912154DD5600F2054C /* ModelDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelDataSource.h; sourceTree = "<group>"; };
 		C42521922154DD5600F2054C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C42521972154DD5600F2054C /* ModelDataSourceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelDataSourceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C425219C2154DD5700F2054C /* ModelDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataSourceTests.swift; sourceTree = "<group>"; };
+		C425219C2154DD5700F2054C /* TableViewDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceTests.swift; sourceTree = "<group>"; };
 		C425219E2154DD5700F2054C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C42521AB2154DEEE00F2054C /* ModelCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCollection.swift; sourceTree = "<group>"; };
 		C42521AF2155275100F2054C /* ModelDataSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataSourceView.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		C425219B2154DD5700F2054C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				C425219C2154DD5700F2054C /* ModelDataSourceTests.swift */,
+				C425219C2154DD5700F2054C /* TableViewDataSourceTests.swift */,
 				C4AE1A35217A2BBB007CD299 /* TestTableViewCell.swift */,
 				C425219E2154DD5700F2054C /* Info.plist */,
 			);
@@ -330,7 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C425219D2154DD5700F2054C /* ModelDataSourceTests.swift in Sources */,
+				C425219D2154DD5700F2054C /* TableViewDataSourceTests.swift in Sources */,
 				C4AE1A38217A2C02007CD299 /* TestTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
