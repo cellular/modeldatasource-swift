@@ -1,19 +1,65 @@
 import UIKit
 
-open class TableViewDataSource: NSObject, ModelCollection {
+open class TableViewDataSource: NSObject {
 
-    // MARK: ModelCollection
     public typealias DataSourceView = UITableView
-    // swiftlint:disable syntactic_sugar
-    public typealias Buffer = Array<ModelSection<UITableView>>
-    // swiftlint:enable syntactic_sugar
-    public var buffer: Buffer
+    public typealias Buffer = [ModelSection<UITableView>]
+    public typealias Index = Buffer.Index
+
+    private var buffer: Buffer
 
     open weak var delegate: TableViewDataSourceDelegate?
 
-    required public override init() {
+    /// Creates a new, empty collection (required by RangeReplaceableCollection)
+    required override public init() {
         buffer = []
         super.init()
+    }
+}
+
+// MARK: - ModelCollection Collection conformance (MutableCollection, RandomAccessCollection, RangeReplaceableCollection)
+
+extension TableViewDataSource: ModelCollection {
+
+    /// The position of the first element in a nonempty collection.
+    ///
+    /// If the collection is empty, `startIndex` is equal to `endIndex`.
+    public var startIndex: Index {
+        return buffer.startIndex
+    }
+
+    /// The collection's "past the end" position---that is, the position one
+    /// greater than the last valid subscript argument.
+    ///
+    /// When you need a range that includes the last element of a collection, use
+    /// the half-open range operator (`..<`) with `endIndex`. The `..<` operator
+    /// creates a range that doesn't include the upper bound, so it's always
+    /// safe to use with `endIndex`. For example:
+    ///
+    /// If the collection is empty, `endIndex` is equal to `startIndex`.
+    public var endIndex: Index {
+        return buffer.endIndex
+    }
+
+    /// Accesses the element at the specified position.
+    ///
+    /// You can subscript a collection with any valid index other than the
+    /// collection's end index. The end index refers to the position one
+    /// past the last element of a collection, so it doesn't correspond with an
+    /// element.
+    ///
+    /// - Parameter position: The position of the element to access. `position`
+    ///   must be a valid index of the collection that is not equal to the
+    ///   `endIndex` property.
+    ///
+    /// - Complexity: O(1)
+    public subscript(index: Index) -> ModelSection<DataSourceView> {
+        get {
+            return buffer[index]
+        }
+        set {
+            buffer[index] = newValue
+        }
     }
 }
 

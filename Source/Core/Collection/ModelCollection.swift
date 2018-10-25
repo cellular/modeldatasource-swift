@@ -4,69 +4,10 @@ import UIKit
 /// Protocol implemented by data sources managing a two dimensional list of items and sections.
 /// In a `UITableView` context this would mean it manages rows and sections.
 public protocol ModelCollection: MutableCollection, RandomAccessCollection, RangeReplaceableCollection
-    where Self.Element == ModelSection<Self.DataSourceView>, Self.Index == Int {
+    where Self.Element == ModelSection<DataSourceView>, Index == Int {
 
     /// Type of the class that should support two dimensional model handling and is driven by a data source (e.g. UITableView)
     associatedtype DataSourceView: ModelDataSourceView
-
-    /// The type of the storage used by the ModelCollection
-    associatedtype Buffer: MutableCollection, RandomAccessCollection, RangeReplaceableCollection
-        where Buffer.Element == Self.Element, Buffer.Index == Self.Index
-
-    /// The storage used by the Collection.
-    ///
-    /// WARNING: Only use internally. Do not access from outside the module.
-    /// Needs to be publicly accessable to conform against the protocols MutableCollection,
-    /// RandomAccessCollection, RangeReplaceableCollection. The public access modifier was only
-    /// chosen out of convenience. Without, the section 'Collection conformance' has to be implement
-    /// by every class or struct conforming to ModelCollection.
-    var buffer: Buffer { get set }
-}
-
-// MARK: - Collection conformance (MutableCollection, RandomAccessCollection, RangeReplaceableCollection)
-
-public extension ModelCollection {
-
-    /// The position of the first element in a nonempty collection.
-    ///
-    /// If the collection is empty, `startIndex` is equal to `endIndex`.
-    public var startIndex: Index {
-        return buffer.startIndex
-    }
-
-    /// The collection's "past the end" position---that is, the position one
-    /// greater than the last valid subscript argument.
-    ///
-    /// When you need a range that includes the last element of a collection, use
-    /// the half-open range operator (`..<`) with `endIndex`. The `..<` operator
-    /// creates a range that doesn't include the upper bound, so it's always
-    /// safe to use with `endIndex`. For example:
-    ///
-    /// If the collection is empty, `endIndex` is equal to `startIndex`.
-    public var endIndex: Index {
-        return buffer.endIndex
-    }
-
-    /// Accesses the element at the specified position.
-    ///
-    /// You can subscript a collection with any valid index other than the
-    /// collection's end index. The end index refers to the position one
-    /// past the last element of a collection, so it doesn't correspond with an
-    /// element.
-    ///
-    /// - Parameter position: The position of the element to access. `position`
-    ///   must be a valid index of the collection that is not equal to the
-    ///   `endIndex` property.
-    ///
-    /// - Complexity: O(1)
-    public subscript(index: Index) -> ModelSection<DataSourceView> {
-        get {
-            return buffer[index]
-        }
-        set {
-            buffer[index] = newValue
-        }
-    }
 }
 
 // MARK: - Convenience
