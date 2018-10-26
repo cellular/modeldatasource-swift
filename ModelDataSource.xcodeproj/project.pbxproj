@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C42521982154DD5700F2054C /* ModelDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C425218E2154DD5600F2054C /* ModelDataSource.framework */; };
-		C425219D2154DD5700F2054C /* TableViewDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C425219C2154DD5700F2054C /* TableViewDataSourceTests.swift */; };
 		C425219F2154DD5700F2054C /* ModelDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = C42521912154DD5600F2054C /* ModelDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C42521AC2154DEEE00F2054C /* ModelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521AB2154DEEE00F2054C /* ModelCollection.swift */; };
 		C42521B02155275100F2054C /* ModelDataSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521AF2155275100F2054C /* ModelDataSourceView.swift */; };
@@ -21,11 +20,12 @@
 		C42521C221552BD700F2054C /* CollectionView+ModelDataSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C121552BD700F2054C /* CollectionView+ModelDataSourceView.swift */; };
 		C42521C521552C1B00F2054C /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C421552C1B00F2054C /* TableViewDataSource.swift */; };
 		C42521C721552C4600F2054C /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C621552C4600F2054C /* CollectionViewDataSource.swift */; };
-		C45D55D7218304DA000C18E6 /* TestModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45D55D6218304DA000C18E6 /* TestModelSection.swift */; };
+		C45D55D7218304DA000C18E6 /* ModelSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45D55D6218304DA000C18E6 /* ModelSectionTests.swift */; };
+		C45D55D9218346BB000C18E6 /* ModelCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45D55D8218346BB000C18E6 /* ModelCollectionTests.swift */; };
 		C4AE1A30217A1C11007CD299 /* ModelCollection+Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE1A2F217A1C11007CD299 /* ModelCollection+Deprecated.swift */; };
 		C4AE1A32217A2593007CD299 /* TableViewDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE1A31217A2593007CD299 /* TableViewDataSourceDelegate.swift */; };
 		C4AE1A34217A26D5007CD299 /* CollectionViewDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE1A33217A26D5007CD299 /* CollectionViewDataSourceDelegate.swift */; };
-		C4AE1A38217A2C02007CD299 /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE1A35217A2BBB007CD299 /* TestTableViewCell.swift */; };
+		C4AE1A38217A2C02007CD299 /* ModelDataSourceViewDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE1A35217A2BBB007CD299 /* ModelDataSourceViewDisplayable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +43,6 @@
 		C42521912154DD5600F2054C /* ModelDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelDataSource.h; sourceTree = "<group>"; };
 		C42521922154DD5600F2054C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C42521972154DD5600F2054C /* ModelDataSourceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelDataSourceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C425219C2154DD5700F2054C /* TableViewDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceTests.swift; sourceTree = "<group>"; };
 		C425219E2154DD5700F2054C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C42521AB2154DEEE00F2054C /* ModelCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCollection.swift; sourceTree = "<group>"; };
 		C42521AF2155275100F2054C /* ModelDataSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataSourceView.swift; sourceTree = "<group>"; };
@@ -56,11 +55,12 @@
 		C42521C121552BD700F2054C /* CollectionView+ModelDataSourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+ModelDataSourceView.swift"; sourceTree = "<group>"; };
 		C42521C421552C1B00F2054C /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		C42521C621552C4600F2054C /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
-		C45D55D6218304DA000C18E6 /* TestModelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModelSection.swift; sourceTree = "<group>"; };
+		C45D55D6218304DA000C18E6 /* ModelSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSectionTests.swift; sourceTree = "<group>"; };
+		C45D55D8218346BB000C18E6 /* ModelCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelCollectionTests.swift; sourceTree = "<group>"; };
 		C4AE1A2F217A1C11007CD299 /* ModelCollection+Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelCollection+Deprecated.swift"; sourceTree = "<group>"; };
 		C4AE1A31217A2593007CD299 /* TableViewDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceDelegate.swift; sourceTree = "<group>"; };
 		C4AE1A33217A26D5007CD299 /* CollectionViewDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSourceDelegate.swift; sourceTree = "<group>"; };
-		C4AE1A35217A2BBB007CD299 /* TestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
+		C4AE1A35217A2BBB007CD299 /* ModelDataSourceViewDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataSourceViewDisplayable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,10 +113,10 @@
 		C425219B2154DD5700F2054C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				C425219C2154DD5700F2054C /* TableViewDataSourceTests.swift */,
-				C4AE1A35217A2BBB007CD299 /* TestTableViewCell.swift */,
+				C4AE1A35217A2BBB007CD299 /* ModelDataSourceViewDisplayable.swift */,
+				C45D55D8218346BB000C18E6 /* ModelCollectionTests.swift */,
 				C425219E2154DD5700F2054C /* Info.plist */,
-				C45D55D6218304DA000C18E6 /* TestModelSection.swift */,
+				C45D55D6218304DA000C18E6 /* ModelSectionTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -333,9 +333,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C425219D2154DD5700F2054C /* TableViewDataSourceTests.swift in Sources */,
-				C4AE1A38217A2C02007CD299 /* TestTableViewCell.swift in Sources */,
-				C45D55D7218304DA000C18E6 /* TestModelSection.swift in Sources */,
+				C4AE1A38217A2C02007CD299 /* ModelDataSourceViewDisplayable.swift in Sources */,
+				C45D55D9218346BB000C18E6 /* ModelCollectionTests.swift in Sources */,
+				C45D55D7218304DA000C18E6 /* ModelSectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

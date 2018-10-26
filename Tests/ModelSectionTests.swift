@@ -1,15 +1,7 @@
-//
-//  TestModelSection.swift
-//  ModelDataSourceTests
-//
-//  Created by Michael Hass on 26.10.18.
-//  Copyright © 2018 CELLULAR GmbH. All rights reserved.
-//
-
 import XCTest
 @testable import ModelDataSource
 
-final class TestModelSection: XCTestCase {
+final class ModelSectionTests: XCTestCase {
 
     /// MARK: Collection Conformance
 
@@ -22,7 +14,7 @@ final class TestModelSection: XCTestCase {
         var modelSection: ModelSection<UITableView> = .init()
         XCTAssertTrue(modelSection.startIndex == modelSection.endIndex)
 
-        let initialModel: String = "initial"
+        let initialModel = "initial"
         modelSection.append(.init(model: initialModel, cell: TestTableViewCell.self))
 
         XCTAssertFalse(modelSection.isEmpty)
@@ -31,7 +23,7 @@ final class TestModelSection: XCTestCase {
 
     func testIndexSubscript() {
         var modelSection: ModelSection<UITableView> = .init()
-        let initialModel: String = "initial"
+        let initialModel = "initial"
         modelSection.append(.init(model: initialModel, cell: TestTableViewCell.self))
         XCTAssertTrue(modelSection.startIndex == 0 && modelSection.endIndex == 1)
         XCTAssertEqual((modelSection[0].model as? String), initialModel)
@@ -42,17 +34,17 @@ final class TestModelSection: XCTestCase {
 
     func testReplaceSubrange() {
 
-        var modelSection: ModelSection<UITableView> = .init()
-        let initialModel: String = "initial"
+        let initialModel = "initial"
         let replacedModel = "replaced"
 
         // Repalce subrange
         let replaceRange = 4...7
         let initialCount = 10
         let repatingModel = ModelItem<UITableView>.init(model: initialModel, cell: TestTableViewCell.self)
-        modelSection = .init(decoratives: [:], items: Array(repeating: repatingModel, count: initialCount))
+        var modelSection: ModelSection<UITableView>  = .init(decoratives: [:], items: Array(repeating: repatingModel, count: initialCount))
 
-        let newElements: [ModelItem<UITableView>] = replaceRange.map { _ in .init(model: replacedModel, cell: TestTableViewCell.self) }
+        let newElements: [ModelItem<UITableView>] = .init(repeating: .init(model: replacedModel, cell: TestTableViewCell.self),
+                                                          count: replaceRange.count)
         modelSection.replaceSubrange(replaceRange, with: newElements)
         XCTAssertTrue(modelSection.count == initialCount)
 
@@ -66,9 +58,8 @@ final class TestModelSection: XCTestCase {
     }
 
     // MARK: Convenience
-
     func testDecorativeInit() {
-        let header: ModelDecorative<UITableView> =  .init(model: "header", view: TestDecorativeView.self)
+        let header: ModelDecorative<UITableView> =  .init(model: "header", view: TestTableViewDecorativeView.self)
         let modelSection = ModelSection.init(decorative: header, kind: .header)
         XCTAssertNotNil(modelSection[.header])
         XCTAssertNil(modelSection[.footer])
@@ -78,7 +69,7 @@ final class TestModelSection: XCTestCase {
         let count = 10
         let repatingModel: ModelItem<UITableView> = .init(model: "Test", cell: TestTableViewCell.self)
         let items: [ModelItem<UITableView>] = Array(repeating: repatingModel, count: count)
-        let header: ModelDecorative<UITableView> =  .init(model: "header", view: TestDecorativeView.self)
+        let header: ModelDecorative<UITableView> =  .init(model: "header", view: TestTableViewDecorativeView.self)
         let modelSection = ModelSection(decoratives: [.header: header], items: items)
 
         XCTAssertNotNil(modelSection[.header])
@@ -91,8 +82,8 @@ final class TestModelSection: XCTestCase {
         XCTAssertNil(modelSection[.footer])
         XCTAssertNil(modelSection[.header])
 
-        modelSection[.footer] = .init(model: "footer", view: TestDecorativeView.self)
-        modelSection[.header] = .init(model: "header", view: TestDecorativeView.self)
+        modelSection[.footer] = .init(model: "footer", view: TestTableViewDecorativeView.self)
+        modelSection[.header] = .init(model: "header", view: TestTableViewDecorativeView.self)
 
         XCTAssertEqual(modelSection[.footer]?.model as? String, "footer")
         XCTAssertEqual(modelSection[.header]?.model as? String, "header")
@@ -116,8 +107,8 @@ final class TestModelSection: XCTestCase {
         XCTAssertNil(modelSection[.footer])
         XCTAssertNil(modelSection[.header])
 
-        modelSection[.footer] = .init(model: "footer", view: TestDecorativeView.self)
-        modelSection[.header] = .init(model: "header", view: TestDecorativeView.self)
+        modelSection[.footer] = .init(model: "footer", view: TestTableViewDecorativeView.self)
+        modelSection[.header] = .init(model: "header", view: TestTableViewDecorativeView.self)
 
         let removedItem = modelSection.remove(decorative: .footer)
         XCTAssertEqual(removedItem?.model as? String, "footer")
