@@ -61,6 +61,40 @@ extension TableViewDataSource: ModelCollection {
             buffer[index] = newValue
         }
     }
+
+    /// Replaces the specified subrange of elements with the given collection.
+    ///
+    /// This method has the effect of removing the specified range of elements
+    /// from the collection and inserting the new elements at the same location.
+    /// The number of new elements need not match the number of elements being
+    /// removed.
+    ///
+    /// If you pass a zero-length range as the `subrange` parameter, this method
+    /// inserts the elements of `newElements` at `subrange.startIndex`. Calling
+    /// the `insert(contentsOf:at:)` method instead is preferred.
+    ///
+    /// Likewise, if you pass a zero-length collection as the `newElements`
+    /// parameter, this method removes the elements in the given subrange
+    /// without replacement. Calling the `removeSubrange(_:)` method instead is
+    /// preferred.
+    ///
+    /// Calling this method may invalidate any existing indices for use with this
+    /// collection.
+    ///
+    /// - Parameters:
+    ///   - subrange: The subrange of the collection to replace. The bounds of
+    ///     the range must be valid indices of the collection.
+    ///   - newElements: The new elements to add to the collection.
+    ///
+    /// - Complexity: O(*n* + *m*), where *n* is length of this collection and
+    ///   *m* is the length of `newElements`. If the call to this method simply
+    ///   appends the contents of `newElements` to the collection, the complexity
+    ///   is O(*m*).
+    public func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where C: Collection, R: RangeExpression,
+        ModelSection<TableViewDataSource.DataSourceView> == C.Element, TableViewDataSource.Index == R.Bound {
+
+        buffer.replaceSubrange(subrange, with: newElements)
+    }
 }
 
 // MARK: - UITableViewDataSource
