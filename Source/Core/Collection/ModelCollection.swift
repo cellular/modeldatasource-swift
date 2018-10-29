@@ -188,7 +188,7 @@ public extension ModelCollection {
     ///
     /// - Complexity: O(*n*), where *n* is the length of the collection. If
     ///   `i == endIndex`, this method is equivalent to `append(_:)`.
-    mutating func insert(_ item: ModelItem<DataSourceView>, indexPath: IndexPath) {
+    mutating func insert(item: ModelItem<DataSourceView>, indexPath: IndexPath) {
         self[indexPath.section].insert(item, at: indexPath.item)
     }
 

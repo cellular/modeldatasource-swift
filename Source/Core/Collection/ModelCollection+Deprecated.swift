@@ -38,9 +38,8 @@ public extension ModelCollection {
 
             return append(decorative: .init(model: model, view: view), ofKind: ofKind)
     }
-
-    @discardableResult
     @available(*, deprecated: 5.0, renamed: "append(item:inSection:)")
+    @discardableResult
     mutating func append<M, C: ModelDataSourceViewDisplayable>(_ model: M, cell: C.Type, inSection: Index? = nil)
         -> IndexPath where C.Model == M, C.Size == DataSourceView.Dimension {
 
@@ -51,26 +50,28 @@ public extension ModelCollection {
     @discardableResult
     mutating func appendContentsOf<M, C: ModelDataSourceViewDisplayable>(_ models: [M],
                                                                          cell: C.Type,
-                                                                         inSection: Index? = nil) -> [IndexPath] where C.Model == M,
-        C.Size == DataSourceView.Dimension {
+                                                                         inSection: Index? = nil) -> [IndexPath]
+                                                                         where C.Model == M, C.Size == DataSourceView.Dimension {
+
             return append(contentsOf: models, cell: cell, inSection: inSection)
     }
 
-    @available(*, deprecated: 5.0, renamed: "insert(_:index:)")
+    @available(*, deprecated: 5.0, renamed: "insert(item:index:)")
     mutating func insert<M, C: ModelDataSourceViewDisplayable>(_ model: M, cell: C.Type, index: IndexPath) where C.Model == M,
         C.Size == DataSourceView.Dimension {
 
-            insert(.init(model: model, cell: cell), indexPath: index)
+        insert(item: .init(model: model, cell: cell), indexPath: index)
     }
 
-    @available(*, deprecated: 5.0, renamed: "remove(at:)")
     @discardableResult
+    @available(*, deprecated: 5.0, renamed: "remove(at:)")
     mutating func removeAtIndex(_ index: IndexPath) -> ModelItem<DataSourceView> {
         return remove(at: index)
     }
 
+    @discardableResult
+    @available(*, deprecated: 5.0, renamed: "remove(at:)")
     mutating func removeAtIndex(_ indices: [Int]) -> [ModelSection<DataSourceView>] {
-
         return remove(at: Set(indices))
     }
 }

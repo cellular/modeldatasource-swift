@@ -58,6 +58,7 @@ final class ModelSectionTests: XCTestCase {
     }
 
     // MARK: Convenience
+
     func testDecorativeInit() {
         let header: ModelDecorative<UITableView> =  .init(model: "header", view: TestTableViewDecorativeView.self)
         let modelSection = ModelSection.init(decorative: header, kind: .header)
@@ -99,7 +100,7 @@ final class ModelSectionTests: XCTestCase {
         replaceIndices.forEach { modelSection[$0] = .init(model: searchModel, cell: TestSearchTableViewCell.self) }
 
         let found = modelSection.find(TestSearchTableViewCell.self)
-        XCTAssertEqual(replaceIndices, found)
+        XCTAssertEqual(Set(replaceIndices), Set(found))
     }
 
     func testRemoveDecorative() {
