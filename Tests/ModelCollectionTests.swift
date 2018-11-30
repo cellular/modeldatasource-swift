@@ -432,7 +432,6 @@ private class ModelCollectionTesting<C: ModelCollection> {
                       "\(collectionName) unable to append list of models to specific section")
     }
 
-
     func testInserItem() {
         let initialModel = "Initial Model"
         let insertedModel = "Inserted Model"
