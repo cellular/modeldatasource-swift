@@ -1,11 +1,3 @@
-//
-//  ModelCollectionDeprecatedTests.swift
-//  ModelDataSourceTests
-//
-//  Created by Michael Hass on 26.11.18.
-//  Copyright © 2018 CELLULAR GmbH. All rights reserved.
-//
-
 import XCTest
 @testable import ModelDataSource
 
@@ -72,7 +64,23 @@ class ModelCollectionDeprecatedTests: XCTestCase {
     }
 
     func testInsertItemAtIndexPath() {
+        tableViewTesting.testInsertItemAtIndexPath("searchItem", insertCell: TestSearchTableViewCell.self)
+        collectionViewTesting.testInsertItemAtIndexPath("searchItem", insertCell: TestSearchCollectionViewCell.self)
+    }
 
+    func testRemoveAtIndexPath() {
+        tableViewTesting.testRemoveAtIndexPath()
+        collectionViewTesting.testRemoveAtIndexPath()
+    }
+
+    func testRemoveAtIndexPaths() {
+        tableViewTesting.testRemoveAtIndexPaths()
+        collectionViewTesting.testRemoveAtIndexPaths()
+    }
+
+    func testRemoveAtIndices() {
+        tableViewTesting.testRemoveAtIndices()
+        collectionViewTesting.testRemoveAtIndices()
     }
 
 }
@@ -236,7 +244,6 @@ private class ModelCollectionDeprecatedTesting<C: ModelCollection> {
         XCTAssert(deprecatedCollection.isEmpty, "Deprecated \(collectionName) is not empty.")
 
         // Creates new section if nil is passed
-
         let createdIndexPaths = collection.append(contentsOf: models, cell: cell, inSection: nil)
         let deprecatedCreatedIndexPaths = deprecatedCollection.appendContentsOf(models, cell: cell, inSection: nil)
 
@@ -261,9 +268,118 @@ private class ModelCollectionDeprecatedTesting<C: ModelCollection> {
         XCTAssertTrue(deprecatedCollection[1].count == models.count, "Deprecated \(collectionName) failed to create items.")
     }
 
-    func testInsertItemAtIndexPath<M, Cell: ModelDataSourceViewDisplayable>(_ model: M, cell: Cell.Type)
+    func testInsertItemAtIndexPath<M, Cell: ModelDataSourceViewDisplayable>(_ model: M, insertCell: Cell.Type)
         where Cell.Model == M, Cell.Size == C.DataSourceView.Dimension {
 
+        guard let modelItem = createItem?("Item"), let searchItem = createSearchItem?("searchItem"),
+            let searchClass = searchItemClass else {
+            return XCTFail("\(collectionName) failed to create items.")
+        }
+
+        let initialCount = 3
+
+        var collection: C = C([ModelSection<C.DataSourceView>.init(repeatElement(modelItem, count: initialCount))])
+        var deprecatedCollection: C = C([ModelSection<C.DataSourceView>.init(repeatElement(modelItem, count: initialCount))])
+        XCTAssert(!collection.isEmpty && collection[0].count == initialCount, "\(collectionName) is empty.")
+        XCTAssert(!deprecatedCollection.isEmpty && deprecatedCollection[0].count == initialCount, "Deprecated \(collectionName) is empty.")
+
+        let insertionPath = IndexPath(row: 1, section: 0)
+        collection.insert(item: searchItem, indexPath: insertionPath)
+        deprecatedCollection.insert(model, cell: insertCell, index: insertionPath)
+
+        let indexPaths = collection.find(searchClass)
+        XCTAssertTrue(indexPaths.count == 1, "\(collectionName) failed to insert item")
+        XCTAssertTrue(indexPaths[0] == insertionPath, "\(collectionName) failed to insert item")
+
+        let deprecatedIndexPaths = deprecatedCollection.find(searchClass)
+        XCTAssertTrue(deprecatedIndexPaths.count == 1, "\(collectionName) failed to insert item")
+        XCTAssertTrue(deprecatedIndexPaths[0] == insertionPath, "\(collectionName) failed to insert item")
     }
+
+    func testRemoveAtIndexPath() {
+
+        guard let modelItem = createItem?("Item"), let searchItem = createSearchItem?("searchItem"),
+            let searchClass = searchItemClass else {
+            return XCTFail("\(collectionName) failed to create items.")
+        }
+
+        let initialCount = 3
+
+        var collection: C = C([ModelSection<C.DataSourceView>.init(repeatElement(modelItem, count: initialCount))])
+        var deprecatedCollection: C = C([ModelSection<C.DataSourceView>.init(repeatElement(modelItem, count: initialCount))])
+        XCTAssert(!collection.isEmpty && collection[0].count == initialCount, "\(collectionName) is empty.")
+        XCTAssert(!deprecatedCollection.isEmpty && deprecatedCollection[0].count == initialCount, "Deprecated \(collectionName) is empty.")
+
+        let removeIndexPath = IndexPath(row: 1, section: 0)
+
+        // Replace model at index path to check if worked
+        collection[removeIndexPath] = searchItem
+        deprecatedCollection[removeIndexPath] = searchItem
+
+        let removedModelItem = collection.remove(at: removeIndexPath)
+        let deprecatedRemovedModelItem = deprecatedCollection.removeAtIndex(removeIndexPath)
+
+        XCTAssertTrue(collection[0].count == initialCount - 1, "\(collectionName) unable to remove model at index path.")
+        XCTAssertTrue(collection.find(searchClass).count == 0, "\(collectionName) unable to remove model at index path.")
+        XCTAssertTrue(removedModelItem.cell == searchClass, "\(collectionName) unable to remove model at index path.")
+
+        XCTAssertTrue(deprecatedCollection[0].count == initialCount - 1, "\(collectionName) unable to remove model at index path.")
+        XCTAssertTrue(deprecatedCollection.find(searchClass).count == 0, "\(collectionName) unable to remove model at index path.")
+        XCTAssertTrue(deprecatedRemovedModelItem.cell == searchClass, "\(collectionName) unable to remove model at index path.")
+
+    }
+
+    func testRemoveAtIndexPaths() {
+
+        guard let modelItem = createItem?("Item"), let searchItem = createSearchItem?("searchItem"),
+            let searchClass = searchItemClass else {
+                return XCTFail("\(collectionName) failed to create items.")
+        }
+
+        let initialCount = 5
+
+        var collection: C = C([ModelSection<C.DataSourceView>.init(repeatElement(modelItem, count: initialCount))])
+        var deprecatedCollection: C = C([ModelSection<C.DataSourceView>.init(repeatElement(modelItem, count: initialCount))])
+        XCTAssert(!collection.isEmpty && collection[0].count == initialCount, "\(collectionName) is empty.")
+        XCTAssert(!deprecatedCollection.isEmpty && deprecatedCollection[0].count == initialCount, "Deprecated \(collectionName) is empty.")
+
+        let removeIndexPaths = [IndexPath(row: 1, section: 0), IndexPath(row: 3, section: 0)]
+
+        // Replace model at index path to check if remove worked
+        removeIndexPaths.forEach { collection[$0] = searchItem }
+        removeIndexPaths.forEach { deprecatedCollection[$0] = searchItem }
+
+        XCTAssertTrue(collection.find(searchClass).count == removeIndexPaths.count, "\(collectionName) unable to insert model at index path.")
+        XCTAssertTrue(deprecatedCollection.find(searchClass).count == removeIndexPaths.count, "\(collectionName) unable to insert model at index path.")
+
+        let removedModelItems = collection.remove(at: Set(removeIndexPaths))
+        let deprecatedRemovedModelItems = deprecatedCollection.removeAtIndex(removeIndexPaths)
+
+        XCTAssertTrue(collection.find(searchClass).count == 0, "\(collectionName) unable to remove model at index path.")
+        XCTAssertTrue(deprecatedCollection.find(searchClass).count == 0, "\(collectionName) unable to remove model at index path.")
+        XCTAssertTrue(removedModelItems.count == removeIndexPaths.count, "\(collectionName) unable to remove model at index path.")
+        XCTAssertTrue(deprecatedRemovedModelItems.count == removeIndexPaths.count, "\(collectionName) unable to remove model at index path.")
+    }
+
+    func testRemoveAtIndices() {
+
+        let initialCount = 5
+
+        var collection: C = C(repeatElement(.init(), count: initialCount))
+        var deprecatedCollection: C = C(repeatElement(.init(), count: initialCount))
+        XCTAssertFalse(collection.isEmpty, "\(collectionName) is empty.")
+        XCTAssertFalse(deprecatedCollection.isEmpty, "Deprecated \(collectionName) is empty.")
+
+        let removeIndices = [3, 0, 2]
+        let removedSections = collection.remove(at: Set(removeIndices))
+        let removedDeprecated = deprecatedCollection.removeAtIndex(removeIndices)
+
+        XCTAssertTrue(removedSections.count == removeIndices.count)
+        XCTAssertTrue(collection.count == initialCount - removeIndices.count)
+
+        XCTAssertTrue(removedDeprecated.count == removeIndices.count)
+        XCTAssertTrue(deprecatedCollection.count == initialCount - removeIndices.count)
+    }
+
 }
 

@@ -14,7 +14,6 @@ final class TestTableViewCell: UITableViewCell, TestModelDataSourceViewDisplayab
 
     var model: String?
     static var testModel: String { return reuseIdentifier }
-
 }
 
 final class TestSearchTableViewCell: UITableViewCell, TestModelDataSourceViewDisplayable {
@@ -46,7 +45,6 @@ final class TestCollectionViewCell: UICollectionViewCell, TestModelDataSourceVie
 
     var model: String?
     static var testModel: String { return reuseIdentifier }
-
 }
 
 final class TestSearchCollectionViewCell: UICollectionViewCell, TestModelDataSourceViewDisplayable {
@@ -68,5 +66,4 @@ final class TestCollectionViewDecorativeView: UICollectionReusableView, TestMode
 
     var model: String?
     static var testModel: String { return reuseIdentifier }
-
 }

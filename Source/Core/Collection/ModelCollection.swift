@@ -246,7 +246,7 @@ public extension ModelCollection {
     /// - Parameter indices: Indices to remvoe
     /// - Returns: Removed elemnts
     ///
-    /// - Complexity: O(*n^2*), where is the length of the collection.
+    /// - Complexity: O(*n^2*), where *n* is the length of the collection.
     @discardableResult
     mutating func remove(at indexPaths: Set<IndexPath>) -> [ModelItem<DataSourceView>] {
         return indexPaths.sorted(by: >).map {

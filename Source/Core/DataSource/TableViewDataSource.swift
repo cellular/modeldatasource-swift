@@ -11,7 +11,7 @@ open class TableViewDataSource: NSObject {
     open weak var delegate: TableViewDataSourceDelegate?
 
     /// Creates a new, empty collection (required by RangeReplaceableCollection)
-    required override public init() {
+    override required public init() {
         buffer = []
         super.init()
     }

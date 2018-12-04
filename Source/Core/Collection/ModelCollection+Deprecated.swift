@@ -71,7 +71,13 @@ public extension ModelCollection {
 
     @available(*, deprecated: 5.0, renamed: "remove(at:)")
     @discardableResult
-    mutating func removeAtIndex(_ indices: [Int]) -> [ModelSection<DataSourceView>] {
+    mutating func removeAtIndex(_ indices: [IndexPath]) -> [ModelItem<DataSourceView>] {
+        return remove(at: Set(indices))
+    }
+
+    @available(*, deprecated: 5.0, renamed: "remove(at:)")
+    @discardableResult
+    mutating func removeAtIndex(_ indices: [Index]) -> [ModelSection<DataSourceView>] {
         return remove(at: Set(indices))
     }
 }

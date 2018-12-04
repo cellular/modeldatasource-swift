@@ -11,7 +11,7 @@ open class CollectionViewDataSource: NSObject {
     open weak var delegate: CollectionViewDataSourceDelegate?
 
     /// Creates a new, empty collection (required by RangeReplaceableCollection)
-    required override public init() {
+    override required public init() {
         buffer = []
         super.init()
     }
