@@ -1,5 +1,5 @@
 import XCTest
-@testable import ModelDataSource
+import ModelDataSource
 
 final class ModelSectionTests: XCTestCase {
 

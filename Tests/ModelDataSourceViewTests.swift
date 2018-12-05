@@ -1,14 +1,6 @@
-//
-//  ModelDataSourceViewTests.swift
-//  ModelDataSourceTests
-//
-//  Created by Michael Hass on 29.10.18.
-//  Copyright © 2018 CELLULAR GmbH. All rights reserved.
-//
-
 import XCTest
 
-class ModelDataSourceViewTests: XCTestCase {
+final class ModelDataSourceViewTests: XCTestCase {
 
     // MARK: UITableView + ModelDataSourceView
 

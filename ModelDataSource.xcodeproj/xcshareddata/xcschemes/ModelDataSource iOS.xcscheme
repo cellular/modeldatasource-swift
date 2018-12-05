@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C425218D2154DD5600F2054C"
-               BuildableName = "ModelDataSource.framework"
-               BlueprintName = "ModelDataSource"
+               BuildableName = "ModelDataSource_iOS.framework"
+               BlueprintName = "ModelDataSource iOS"
                ReferencedContainer = "container:ModelDataSource.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,8 +34,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C42521962154DD5600F2054C"
-               BuildableName = "ModelDataSourceTests.xctest"
-               BlueprintName = "ModelDataSourceTests"
+               BuildableName = "ModelDataSource Tests.xctest"
+               BlueprintName = "ModelDataSource Tests"
                ReferencedContainer = "container:ModelDataSource.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -44,8 +44,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C425218D2154DD5600F2054C"
-            BuildableName = "ModelDataSource.framework"
-            BlueprintName = "ModelDataSource"
+            BuildableName = "ModelDataSource_iOS.framework"
+            BlueprintName = "ModelDataSource iOS"
             ReferencedContainer = "container:ModelDataSource.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,8 +66,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C425218D2154DD5600F2054C"
-            BuildableName = "ModelDataSource.framework"
-            BlueprintName = "ModelDataSource"
+            BuildableName = "ModelDataSource_iOS.framework"
+            BlueprintName = "ModelDataSource iOS"
             ReferencedContainer = "container:ModelDataSource.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,8 +84,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C425218D2154DD5600F2054C"
-            BuildableName = "ModelDataSource.framework"
-            BlueprintName = "ModelDataSource"
+            BuildableName = "ModelDataSource_iOS.framework"
+            BlueprintName = "ModelDataSource iOS"
             ReferencedContainer = "container:ModelDataSource.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

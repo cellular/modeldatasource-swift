@@ -1,7 +1,7 @@
 import XCTest
-@testable import ModelDataSource
+import ModelDataSource
 
-class ModelCollectionDeprecatedTests: XCTestCase {
+final class ModelCollectionDeprecatedTests: XCTestCase {
 
     private var tableViewTesting: ModelCollectionDeprecatedTesting<TableViewDataSource> {
         let tableViewTesting = ModelCollectionDeprecatedTesting<TableViewDataSource>()

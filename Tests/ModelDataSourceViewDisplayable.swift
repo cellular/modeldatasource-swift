@@ -1,6 +1,5 @@
 import UIKit
 import ModelDataSource
-@testable import ModelDataSource
 
 protocol TestModelDataSourceViewDisplayable: ModelDataSourceViewDisplayable {
     static var testModel: Model { get }
