@@ -1,2 +1,2 @@
 #!/bin/bash
-brew update && brew install swiftlint;
+# brew update && brew install swiftlint;
