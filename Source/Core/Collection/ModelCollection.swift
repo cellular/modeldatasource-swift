@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 /// Protocol implemented by data sources managing a two dimensional list of items and sections.
 /// In a `UITableView` context this would mean it manages rows and sections.
