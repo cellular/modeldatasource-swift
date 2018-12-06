@@ -119,7 +119,9 @@ extension TableViewDataSource: UITableViewDataSource {
                         inSection section: Int) -> UITableViewHeaderFooterView? {
 
         guard let identifier = self[section, kind]?.reuseIdentifier else { return nil }
-        return tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier)
+        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier) else { return nil }
+        _ = self[section, kind]?.assignModel(view)
+        return view
     }
 
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -127,7 +129,8 @@ extension TableViewDataSource: UITableViewDataSource {
     }
 
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier: self[indexPath].reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: self[indexPath].reuseIdentifier, for: indexPath)
+        _ = self[indexPath].assignModel(cell)
         delegate?.tableView?(tableView, prepareModelCell: cell, atIndexPath: indexPath)
         return cell
     }
