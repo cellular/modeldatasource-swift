@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C49810DE21B7E4580057302E"
-               BuildableName = "ModelDataSource_tvOS.framework"
+               BuildableName = "ModelDataSource.framework"
                BlueprintName = "ModelDataSource tvOS"
                ReferencedContainer = "container:ModelDataSource.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C49810DE21B7E4580057302E"
-            BuildableName = "ModelDataSource_tvOS.framework"
+            BuildableName = "ModelDataSource.framework"
             BlueprintName = "ModelDataSource tvOS"
             ReferencedContainer = "container:ModelDataSource.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C49810DE21B7E4580057302E"
-            BuildableName = "ModelDataSource_tvOS.framework"
+            BuildableName = "ModelDataSource.framework"
             BlueprintName = "ModelDataSource tvOS"
             ReferencedContainer = "container:ModelDataSource.xcodeproj">
          </BuildableReference>
@@ -84,7 +84,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C49810DE21B7E4580057302E"
-            BuildableName = "ModelDataSource_tvOS.framework"
+            BuildableName = "ModelDataSource.framework"
             BlueprintName = "ModelDataSource tvOS"
             ReferencedContainer = "container:ModelDataSource.xcodeproj">
          </BuildableReference>
