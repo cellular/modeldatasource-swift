@@ -1,0 +1,5 @@
+line_length: 140
+included:
+  - Source
+excluded:
+  - Pods
