@@ -121,6 +121,7 @@ extension CollectionViewDataSource: UICollectionViewDataSource {
 
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self[indexPath].reuseIdentifier, for: indexPath)
+        _ = self[indexPath].assignModel(cell)
         delegate?.collectionView?(collectionView, prepareModelCell: cell, atIndexPath: indexPath)
         return cell
     }
@@ -130,11 +131,14 @@ extension CollectionViewDataSource: UICollectionViewDataSource {
                              at indexPath: IndexPath) -> UICollectionReusableView {
 
         guard let decorativeKind = UICollectionViewDecorativeKind(string: kind),
-            let reuseIdentifier = self[indexPath.section, decorativeKind]?.reuseIdentifier else {
-                fatalError("CollectionViewDataSource - could not dequeue collection decorative view of kind: \(kind) at: \(indexPath)")
+            let modelDecorative = self[indexPath.section, decorativeKind] else {
+            fatalError("CollectionViewDataSource - could not dequeue collection decorative view of kind: \(kind) at: \(indexPath)")
         }
 
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                   withReuseIdentifier: modelDecorative.reuseIdentifier,
+                                                                   for: indexPath)
+        _ = modelDecorative.assignModel(view)
         delegate?.collectionView?(collectionView, prepareDecorativeView: view, atIndexPath: indexPath)
         return view
     }
