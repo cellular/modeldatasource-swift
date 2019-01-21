@@ -4,30 +4,30 @@ import Foundation
 
 public extension ModelCollection {
 
-    @available(*, deprecated: 5.0, message: "use subscript[section].isEmpty instead")
+    @available(*, deprecated, message: "use subscript[section].isEmpty instead")
     func isEmptySection(_ section: Index) -> Bool {
         return self[section].isEmpty
     }
 
-    @available(*, deprecated: 5.0, message: "use subscript[section].count instead")
+    @available(*, deprecated, message: "use subscript[section].count instead")
     func countInSection(_ section: Int) -> Int {
         return self[section].count
     }
 
-    @available(*, deprecated: 5.0, message: "Create empty  ModelSection and append it instead.")
+    @available(*, deprecated, message: "Create empty  ModelSection and append it instead.")
     @discardableResult
     mutating func appendSection() -> Index {
         return append(section: .init())
     }
 
-    @available(*, deprecated: 5.0, message: "Create a ModelSection and append it instead.")
+    @available(*, deprecated, message: "Create a ModelSection and append it instead.")
     @discardableResult
     mutating func appendSection<M, D: ModelDataSourceViewDisplayable>(_ model: M, view: D.Type, ofKind kind: DataSourceView.DecorativeKind)
         -> Int where D.Model == M, D.Size == DataSourceView.Dimension {
             return append(section: .init(decorative: .init(model: model, view: view), kind: kind))
     }
 
-    @available(*, deprecated: 5.0, renamed: "append(decorative:ofKind:)")
+    @available(*, deprecated, renamed: "append(decorative:ofKind:)")
     @discardableResult
     mutating func append<M, D: ModelDataSourceViewDisplayable>(_ model: M,
                                                                view: D.Type,
@@ -38,7 +38,7 @@ public extension ModelCollection {
          return append(decorative: .init(model: model, view: view), ofKind: ofKind)
     }
 
-    @available(*, deprecated: 5.0, renamed: "append(item:inSection:)")
+    @available(*, deprecated, renamed: "append(item:inSection:)")
     @discardableResult
     mutating func append<M, C: ModelDataSourceViewDisplayable>(_ model: M, cell: C.Type, inSection: Index? = nil)
         -> IndexPath where C.Model == M, C.Size == DataSourceView.Dimension {
@@ -46,7 +46,7 @@ public extension ModelCollection {
             return append(item: .init(model: model, cell: cell), inSection: inSection)
     }
 
-    @available(*, deprecated: 5.0, renamed: "append(contentsOf:cell:inSection:)")
+    @available(*, deprecated, renamed: "append(contentsOf:cell:inSection:)")
     @discardableResult
     mutating func appendContentsOf<M, C: ModelDataSourceViewDisplayable>(_ models: [M],
                                                                          cell: C.Type,
@@ -56,26 +56,26 @@ public extension ModelCollection {
             return append(contentsOf: models, cell: cell, inSection: inSection)
     }
 
-    @available(*, deprecated: 5.0, renamed: "insert(item:index:)")
+    @available(*, deprecated, renamed: "insert(item:index:)")
     mutating func insert<M, C: ModelDataSourceViewDisplayable>(_ model: M, cell: C.Type, index: IndexPath) where C.Model == M,
         C.Size == DataSourceView.Dimension {
 
         insert(item: .init(model: model, cell: cell), indexPath: index)
     }
 
-    @available(*, deprecated: 5.0, renamed: "remove(at:)")
+    @available(*, deprecated, renamed: "remove(at:)")
     @discardableResult
     mutating func removeAtIndex(_ index: IndexPath) -> ModelItem<DataSourceView> {
         return remove(at: index)
     }
 
-    @available(*, deprecated: 5.0, renamed: "remove(at:)")
+    @available(*, deprecated, renamed: "remove(at:)")
     @discardableResult
     mutating func removeAtIndex(_ indices: [IndexPath]) -> [ModelItem<DataSourceView>] {
         return remove(at: Set(indices))
     }
 
-    @available(*, deprecated: 5.0, renamed: "remove(at:)")
+    @available(*, deprecated, renamed: "remove(at:)")
     @discardableResult
     mutating func removeAtIndex(_ indices: [Index]) -> [ModelSection<DataSourceView>] {
         return remove(at: Set(indices))
