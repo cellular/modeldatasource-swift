@@ -1,0 +1,18 @@
+PODS:
+  - CellularModelDataSource (5.0.0):
+    - CellularModelDataSource/Core (= 5.0.0)
+  - CellularModelDataSource/Core (5.0.0)
+
+DEPENDENCIES:
+  - CellularModelDataSource (from `../`)
+
+EXTERNAL SOURCES:
+  CellularModelDataSource:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CellularModelDataSource: db0c2e68677ffa8c3ba509a3dd0c875398e30e75
+
+PODFILE CHECKSUM: 4289aed542f708e14d1f2b245194bb9a4987ce40
+
+COCOAPODS: 1.5.3
