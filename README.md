@@ -1,18 +1,29 @@
-<center>
+<!-- markdownlint-disable MD002 MD033 MD041 -->
+<h1 align="center">
+  <a href="https://cellular.de">
+    <img src="./.github/cellular.svg" width="300" max-width="50%">
+  </a>
+  <br>modeldatasource<br>
+</h1>
 
-# modeldatasource-swift
 
-<b>
+<h4 align="center">
 Easily and safely manage your content for data compatible views. The module is capable of handling two dimensional sets of data and simplifies displaying content in section and row/item based views.
 Every set of data/content and the associated view is stored within a ModelCollection. The ModelCollection inherites from MutableCollection, RandomAccessCollection, RangeReplaceableCollection. Concrete classes conforming against ModelCollection are TableViewDataSource and CollectionViewDataSource.
-</b>
+</h4>
 
-[![Swift Version](https://img.shields.io/badge/swift-4.2-orange.svg?style=flat)](https://swift.org)
-[![Travis Build](https://img.shields.io/travis/com/cellular/networking-swift.svg)](http://travis-ci.com/cellular/modeldatasource-swift/)
-[![Coverage Report](https://codecov.io/gh/cellular/modeldatasource-swift/branch/master/graph/badge.svg)](https://codecov.io/gh/cellular/modeldatasource-swift)
-
-
-</center>
+<p align="center">
+    <a href="https://swift.org">
+        <img src="https://img.shields.io/badge/swift-4.2-orange.svg?style=flat" alt="Swift Version">
+    </a>
+    <a href="http://travis-ci.com/cellular/modeldatasource-swift/">
+        <img src="https://img.shields.io/travis/com/cellular/networking-swift.svg" alt="Travis Build">
+    </a>
+     <a href="https://codecov.io/gh/cellular/modeldatasource-swift">
+        <img src="https://codecov.io/gh/cellular/modeldatasource-swift/branch/master/graph/badge.svg" alt="Coverage Report">
+    </a>
+</p>
+<!-- markdownlint-enable MD033 -->
 
 ## Example TableViewDataSource
 ---
