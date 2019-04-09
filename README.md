@@ -19,10 +19,15 @@ Every set of data/content and the associated view is stored within a ModelCollec
     <a href="http://travis-ci.com/cellular/modeldatasource-swift/">
         <img src="https://img.shields.io/travis/com/cellular/networking-swift.svg" alt="Travis Build">
     </a>
-     <a href="https://codecov.io/gh/cellular/modeldatasource-swift">
+    <a href="https://codecov.io/gh/cellular/modeldatasource-swift">
         <img src="https://codecov.io/gh/cellular/modeldatasource-swift/branch/master/graph/badge.svg" alt="Coverage Report">
     </a>
+    <a href="https://cocoapods.org/pods/CellularModelDataSource">
+        <img src="https://img.shields.io/cocoapods/v/CellularModelDataSource.svg" alt="CocoaPods Compatible">
+    </a>
+    
 </p>
+
 <!-- markdownlint-enable MD033 -->
 
 ## Example TableViewDataSource
