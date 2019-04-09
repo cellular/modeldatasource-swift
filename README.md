@@ -39,7 +39,7 @@ Every set of data/content and the associated view is stored within a ModelCollec
 //
 // NOTE: The Example folder contains the full code.
 
-let dataSource = TableViewDataSource()
+var dataSource = TableViewDataSource()
 
 // Setup the UITableViewView
 let tableView = UITableView()
