@@ -19,9 +19,8 @@ Pod::Spec.new do |spec|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
- spec.description      = 'Module managing two dimensional dataSources for TableViews and CollectionViews.'
-
- spec.homepage         = 'www.cellular.de'
+ spec.description      = 'Easily and safely manage your content for data compatible views. The module is capable of handling two dimensional sets of data and simplifies displaying content in section and row/item based views (e.g. UITableView, UICollectionView).'
+ spec.homepage         = 'https://www.cellular.de'
  spec.license          = { :type => 'MIT', :file => 'LICENSE' }
  spec.author           = { 'Cellular GmbH' => 'office@cellular.de' }
  spec.source           = { :git => 'https://github.com/cellular/modeldatasource-swift.git', :tag =>spec.version.to_s }
@@ -29,7 +28,6 @@ Pod::Spec.new do |spec|
   # Deployment Targets
  spec.ios.deployment_target = '9.0'
  spec.tvos.deployment_target = '9.0'
- spec.watchos.deployment_target = '2.0'
 
     # Core Subspec
 

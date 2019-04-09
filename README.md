@@ -72,10 +72,14 @@ tableView.reloadData()
 
 ```
 
-
 ## Cusomization
 ---
 If you want to customize the data source handling, either subclass TableViewDataSource/CollectionViewDataSource or create a custom class that conforms to ModelCollection.
+
+## Requirements
+---
+* iOS 9.0+
+* tvOS 9.0+
 
 ## Installation
 ---
