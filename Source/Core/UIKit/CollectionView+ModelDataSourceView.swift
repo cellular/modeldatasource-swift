@@ -83,7 +83,7 @@ extension UICollectionView: ModelDataSourceView {
 public extension ModelDataSourceViewDisplayable where Self: UICollectionView {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: CGSize? {
+    static var staticSize: CGSize? {
         return nil
     }
 }
@@ -91,7 +91,7 @@ public extension ModelDataSourceViewDisplayable where Self: UICollectionView {
 public extension ModelDataSourceViewDisplayable where Self: UICollectionReusableView {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: CGSize? {
+    static var staticSize: CGSize? {
         return nil
     }
 }

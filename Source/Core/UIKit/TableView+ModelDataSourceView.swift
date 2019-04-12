@@ -52,7 +52,7 @@ extension UITableView: ModelDataSourceView {
 public extension ModelDataSourceViewDisplayable where Self: UITableViewCell {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: CGFloat? {
+    static var staticSize: CGFloat? {
         return nil
     }
 }
@@ -60,7 +60,7 @@ public extension ModelDataSourceViewDisplayable where Self: UITableViewCell {
 public extension ModelDataSourceViewDisplayable where Self: UITableViewHeaderFooterView {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: CGFloat? {
+    static var staticSize: CGFloat? {
         return nil
     }
 }

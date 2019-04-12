@@ -19,7 +19,7 @@
 		C42521C221552BD700F2054C /* CollectionView+ModelDataSourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C121552BD700F2054C /* CollectionView+ModelDataSourceView.swift */; };
 		C42521C521552C1B00F2054C /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C421552C1B00F2054C /* TableViewDataSource.swift */; };
 		C42521C721552C4600F2054C /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521C621552C4600F2054C /* CollectionViewDataSource.swift */; };
-		C44A680B21AC36D700BC1965 /* ModelCollectionDeprecatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44A680A21AC36D700BC1965 /* ModelCollectionDeprecatedTests.swift */; };
+		C44A680B21AC36D700BC1965 /* ModelCollectionDeprecatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44A680A21AC36D700BC1965 /* ModelCollectionDeprecatedTests.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C45D55D7218304DA000C18E6 /* ModelSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45D55D6218304DA000C18E6 /* ModelSectionTests.swift */; };
 		C45D55D9218346BB000C18E6 /* ModelCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45D55D8218346BB000C18E6 /* ModelCollectionTests.swift */; };
 		C45D55DB218759D5000C18E6 /* ModelDataSourceViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45D55DA218759D5000C18E6 /* ModelDataSourceViewTests.swift */; };
@@ -40,7 +40,7 @@
 		C498110321B7E47B0057302E /* ModelDataSourceViewDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42521B32155279800F2054C /* ModelDataSourceViewDisplayable.swift */; };
 		C498110421B7E4810057302E /* ModelDataSourceViewDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE1A35217A2BBB007CD299 /* ModelDataSourceViewDisplayable.swift */; };
 		C498110521B7E4810057302E /* ModelCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45D55D8218346BB000C18E6 /* ModelCollectionTests.swift */; };
-		C498110621B7E4810057302E /* ModelCollectionDeprecatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44A680A21AC36D700BC1965 /* ModelCollectionDeprecatedTests.swift */; };
+		C498110621B7E4810057302E /* ModelCollectionDeprecatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44A680A21AC36D700BC1965 /* ModelCollectionDeprecatedTests.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C498110721B7E4810057302E /* ModelSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45D55D6218304DA000C18E6 /* ModelSectionTests.swift */; };
 		C498110821B7E4810057302E /* ModelDataSourceViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45D55DA218759D5000C18E6 /* ModelDataSourceViewTests.swift */; };
 		C498110D21B7F4190057302E /* ModelDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = C42521912154DD5600F2054C /* ModelDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -361,6 +361,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = C42521842154DD5600F2054C;
 			productRefGroup = C425218F2154DD5600F2054C /* Products */;
@@ -568,6 +569,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -626,6 +628,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -657,7 +660,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -685,7 +687,6 @@
 				PRODUCT_NAME = ModelDataSource;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -704,7 +705,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.cellular.components.ModelDataSourceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -723,7 +723,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.cellular.components.ModelDataSourceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -751,7 +750,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
@@ -779,7 +777,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Release;
@@ -800,7 +797,6 @@
 				PRODUCT_MODULE_NAME = ModelDataSource_tvOS_Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
@@ -821,7 +817,6 @@
 				PRODUCT_MODULE_NAME = ModelDataSource_tvOS_Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Release;
