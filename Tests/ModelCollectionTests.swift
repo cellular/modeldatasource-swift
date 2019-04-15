@@ -128,6 +128,16 @@ final class ModelCollectionTests: XCTestCase {
         tableViewTesting.testRemoveDecorative()
         collectionViewTesting.testRemoveDecorative()
     }
+
+    func testRemoveAllKeepingCapacity() {
+        tableViewTesting.testRemoveAllKeepingCapacity()
+        collectionViewTesting.testRemoveAllKeepingCapacity()
+    }
+
+    func testRemoveAllNotKeeingCapacity() {
+        tableViewTesting.testRemoveAllNotKeeingCapacity()
+        collectionViewTesting.testRemoveAllNotKeeingCapacity()
+    }
 }
 
 // MARK: Helper
@@ -585,5 +595,34 @@ private class ModelCollectionTesting<C: ModelCollection> {
 
         collection.remove(decorative: decorativeKind, inSection: sectionIndex)
         XCTAssertNil(collection[sectionIndex, decorativeKind], "\(collectionName) failed to remove decorative")
+    }
+
+    func testRemoveAllKeepingCapacity() {
+        guard let item = createItem?("item") else {
+            return XCTFail("\(collectionName) failed to create items")
+        }
+
+        var collection: C = .init(repeatElement(.init(decoratives: [:], items: [item]), count: 10))
+        XCTAssertFalse(collection.isEmpty)
+
+        let addressBefore: UnsafeMutableRawPointer =  Unmanaged.passUnretained(collection as AnyObject).toOpaque()
+        collection.removeAll() // Default should be keepingCapacity = true
+        let addressAfter: UnsafeMutableRawPointer = Unmanaged.passUnretained(collection as AnyObject).toOpaque()
+        XCTAssertEqual(addressBefore, addressAfter)
+    }
+
+
+    func testRemoveAllNotKeeingCapacity() {
+        guard let item = createItem?("item") else {
+            return XCTFail("\(collectionName) failed to create items")
+        }
+
+        var collection: C = .init(repeatElement(.init(decoratives: [:], items: [item]), count: 10))
+        XCTAssertFalse(collection.isEmpty)
+
+        let addressBefore: UnsafeMutableRawPointer =  Unmanaged.passUnretained(collection as AnyObject).toOpaque()
+        collection.removeAll(keepingCapacity: false)
+        let addressAfter: UnsafeMutableRawPointer = Unmanaged.passUnretained(collection as AnyObject).toOpaque()
+        XCTAssertNotEqual(addressBefore, addressAfter)
     }
 }
