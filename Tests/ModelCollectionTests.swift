@@ -11,6 +11,7 @@ final class ModelCollectionTests: XCTestCase {
         tableViewTesting.createSearchItem = { .init(model: $0, cell: TestSearchTableViewCell.self) }
         tableViewTesting.createDecorative = { .init(model: $0, view: TestTableViewDecorativeView.self) }
         tableViewTesting.decorativeKinds = { [.header, .footer] }
+        tableViewTesting.capactiy = { $0.capacity }
         return tableViewTesting
     }
 
@@ -22,6 +23,7 @@ final class ModelCollectionTests: XCTestCase {
         collectionViewTesting.createSearchItem = { .init(model: $0, cell: TestSearchCollectionViewCell.self) }
         collectionViewTesting.createDecorative = { .init(model: $0, view: TestCollectionViewDecorativeView.self) }
         collectionViewTesting.decorativeKinds = { [.header, .footer] }
+        collectionViewTesting.capactiy = { $0.capacity }
         return collectionViewTesting
     }
 
@@ -128,6 +130,16 @@ final class ModelCollectionTests: XCTestCase {
         tableViewTesting.testRemoveDecorative()
         collectionViewTesting.testRemoveDecorative()
     }
+
+    func testRemoveAllKeepingCapacity() {
+        tableViewTesting.testRemoveAllKeepingCapacity()
+        collectionViewTesting.testRemoveAllKeepingCapacity()
+    }
+
+    func testRemoveAllNotKeeingCapacity() {
+        tableViewTesting.testRemoveAllNotKeeingCapacity()
+        collectionViewTesting.testRemoveAllNotKeeingCapacity()
+    }
 }
 
 // MARK: Helper
@@ -138,9 +150,9 @@ private class ModelCollectionTesting<C: ModelCollection> {
     var createSearchItem: ((String) -> ModelItem<C.DataSourceView>)?
     var createDecorative: ((String) -> ModelDecorative<C.DataSourceView>)?
     var decorativeKinds: (() -> [C.DataSourceView.DecorativeKind])?
-
     var searchItemClass: C.DataSourceView.Cell.Type?
     var itemClass: C.DataSourceView.Cell.Type?
+    var capactiy: ((C) -> Int)?
 
     init() {}
 
@@ -585,5 +597,45 @@ private class ModelCollectionTesting<C: ModelCollection> {
 
         collection.remove(decorative: decorativeKind, inSection: sectionIndex)
         XCTAssertNil(collection[sectionIndex, decorativeKind], "\(collectionName) failed to remove decorative")
+    }
+
+    func testRemoveAllKeepingCapacity() {
+        guard let item = createItem?("item"), let capacity = capactiy else {
+            return XCTFail("\(collectionName) failed to create items")
+        }
+
+        var collection: C = .init(repeatElement(.init(decoratives: [:], items: [item]), count: 10))
+
+        XCTAssertFalse(collection.isEmpty)
+        let addressBefore: UnsafeMutableRawPointer =  Unmanaged.passUnretained(collection as AnyObject).toOpaque()
+        let capacityBefore = capacity(collection)
+
+        collection.removeAll() // Default should be keepingCapacity = true
+
+        let addressAfter: UnsafeMutableRawPointer = Unmanaged.passUnretained(collection as AnyObject).toOpaque()
+        let capacityAfter = capacity(collection)
+        XCTAssertEqual(addressBefore, addressAfter)
+        XCTAssertEqual(capacityBefore, capacityAfter)
+        XCTAssertTrue(collection.isEmpty)
+    }
+
+
+    func testRemoveAllNotKeeingCapacity() {
+        guard let item = createItem?("item"), let capacity = capactiy else {
+            return XCTFail("\(collectionName) failed to create items")
+        }
+
+        var collection: C = .init(repeatElement(.init(decoratives: [:], items: [item]), count: 10))
+        XCTAssertFalse(collection.isEmpty)
+        let capacityBefore = capacity(collection)
+        let addressBefore: UnsafeMutableRawPointer =  Unmanaged.passUnretained(collection as AnyObject).toOpaque()
+
+        collection.removeAll(keepingCapacity: false)
+
+        let addressAfter: UnsafeMutableRawPointer = Unmanaged.passUnretained(collection as AnyObject).toOpaque()
+        let capacityAfter = capacity(collection)
+        XCTAssertNotEqual(addressBefore, addressAfter)
+        XCTAssertNotEqual(capacityBefore, capacityAfter)
+        XCTAssertTrue(collection.isEmpty)
     }
 }
