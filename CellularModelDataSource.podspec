@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
  spec.name             = 'CellularModelDataSource'
  spec.swift_version    = '4.2'
  spec.module_name      = 'ModelDataSource'
- spec.version          = '5.0.0'
+ spec.version          = '5.0.1'
  spec.summary          = 'Easy TableView and CollectionView data handling.'
 
 # This description is used to generate tags and improve search results.
@@ -26,8 +26,8 @@ Pod::Spec.new do |spec|
  spec.source           = { :git => 'https://github.com/cellular/modeldatasource-swift.git', :tag =>spec.version.to_s }
 
   # Deployment Targets
- spec.ios.deployment_target = '9.0'
- spec.tvos.deployment_target = '9.0'
+ spec.ios.deployment_target = '9.3'
+ spec.tvos.deployment_target = '9.2'
 
     # Core Subspec
 
