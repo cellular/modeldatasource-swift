@@ -115,7 +115,7 @@ extension ModelSection {
     /// Access a specific decirative view.
     ///
     /// - Parameter kind: The kind of the decorative view to access.
-    public subscript(kind: DataSourceView.DecorativeKind) -> ModelDecorative<DataSourceView>? {
+    subscript(kind: DataSourceView.DecorativeKind) -> ModelDecorative<DataSourceView>? {
         get {
             return decoratives[kind]
         }

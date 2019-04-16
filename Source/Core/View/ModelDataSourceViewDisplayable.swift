@@ -26,7 +26,7 @@ public protocol ModelDataSourceViewDisplayable: class {
 public extension ModelDataSourceViewDisplayable {
 
     /// Defaults to the class name of the view. Raw class name only, no module or hash attached.
-    public static var reuseIdentifier: String {
+    static var reuseIdentifier: String {
         return String(describing: self)
     }
 }

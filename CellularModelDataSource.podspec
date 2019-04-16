@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |spec|
  spec.name             = 'CellularModelDataSource'
- spec.swift_version    = '4.2'
+ spec.swift_version    = '5.0'
  spec.module_name      = 'ModelDataSource'
- spec.version          = '5.0.1'
+ spec.version          = '5.1.0'
  spec.summary          = 'Easy TableView and CollectionView data handling.'
 
 # This description is used to generate tags and improve search results.
