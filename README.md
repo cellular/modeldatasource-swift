@@ -83,8 +83,8 @@ If you want to customize the data source handling, either subclass TableViewData
 
 ## Requirements
 ---
-* iOS 9.0+
-* tvOS 9.0+
+* iOS 9.3+
+* tvOS 9.2+
 
 ## Installation
 ---
