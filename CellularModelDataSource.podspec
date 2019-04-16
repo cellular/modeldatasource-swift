@@ -27,7 +27,7 @@ Pod::Spec.new do |spec|
 
   # Deployment Targets
  spec.ios.deployment_target = '9.3'
- spec.tvos.deployment_target = '9.3'
+ spec.tvos.deployment_target = '9.2'
 
     # Core Subspec
 

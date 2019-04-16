@@ -10,7 +10,7 @@ public enum UICollectionViewDecorativeKind: CustomStringConvertible {
 
     /// Maps string value to decorative kind.
     /// Workaround because raw values of enum cases have to be literal.
-    init?(string: String) {
+    public init?(string: String) {
         switch string {
         case UICollectionView.elementKindSectionHeader: self = .header
         case UICollectionView.elementKindSectionFooter: self = .footer
@@ -80,7 +80,7 @@ extension UICollectionView: ModelDataSourceView {
 
 // MARK: - ModelDataSourceViewDisplayable
 
-public extension ModelDataSourceViewDisplayable where Self: UICollectionView {
+extension ModelDataSourceViewDisplayable where Self: UICollectionView {
 
     /// Optional fixed size definition to override dynamic height calculations.
     static var staticSize: CGSize? {
@@ -88,7 +88,7 @@ public extension ModelDataSourceViewDisplayable where Self: UICollectionView {
     }
 }
 
-public extension ModelDataSourceViewDisplayable where Self: UICollectionReusableView {
+extension ModelDataSourceViewDisplayable where Self: UICollectionReusableView {
 
     /// Optional fixed size definition to override dynamic height calculations.
     static var staticSize: CGSize? {

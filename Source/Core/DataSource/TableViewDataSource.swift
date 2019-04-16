@@ -15,6 +15,12 @@ open class TableViewDataSource: NSObject {
         buffer = []
         super.init()
     }
+
+    /// The total number of elements that the collection can contain without
+    /// allocating new storage.
+    public var capacity: Int {
+        return buffer.capacity
+    }
 }
 
 // MARK: - ModelCollection Collection conformance (MutableCollection, RandomAccessCollection, RangeReplaceableCollection)
