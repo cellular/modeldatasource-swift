@@ -1,6 +1,6 @@
 import UIKit
 
-open class TableViewDataSource: NSObject {
+final public class TableViewDataSource: NSObject {
 
     public typealias DataSourceView = UITableView
     public typealias Buffer = [ModelSection<UITableView>]
@@ -8,7 +8,7 @@ open class TableViewDataSource: NSObject {
 
     private var buffer: Buffer
 
-    open weak var delegate: TableViewDataSourceDelegate?
+    public weak var delegate: TableViewDataSourceDelegate?
 
     /// Creates a new, empty collection (required by RangeReplaceableCollection)
     override required public init() {
@@ -38,7 +38,7 @@ extension TableViewDataSource: ModelCollection {
     /// greater than the last valid subscript argument.
     ///
     /// When you need a range that includes the last element of a collection, use
-    /// the half-open range operator (`..<`) with `endIndex`. The `..<` operator
+    /// the half-public range operator (`..<`) with `endIndex`. The `..<` operator
     /// creates a range that doesn't include the upper bound, so it's always
     /// safe to use with `endIndex`. For example:
     ///
@@ -107,21 +107,21 @@ extension TableViewDataSource: ModelCollection {
 
 extension TableViewDataSource: UITableViewDataSource {
 
-    open func heightForCellAtIndexPath(_ indexPath: IndexPath) -> CGFloat {
+    public func heightForCellAtIndexPath(_ indexPath: IndexPath) -> CGFloat {
         return self[indexPath].size ?? UITableView.automaticDimension
     }
 
-    open func heightForDecorativeView(inSection section: Int, ofKind kind: UITableViewDecorativeKind) -> CGFloat? {
+    public func heightForDecorativeView(inSection section: Int, ofKind kind: UITableViewDecorativeKind) -> CGFloat? {
         return self[section, kind]?.size
     }
 
     // MARK: UITableView DataSource Support
 
-    open func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return count
     }
 
-    open func tableView(_ tableView: UITableView, decorativeViewOfKind kind: UITableViewDecorativeKind,
+    public func tableView(_ tableView: UITableView, decorativeViewOfKind kind: UITableViewDecorativeKind,
                         inSection section: Int) -> UITableViewHeaderFooterView? {
 
         guard let identifier = self[section, kind]?.reuseIdentifier else { return nil }
@@ -130,11 +130,11 @@ extension TableViewDataSource: UITableViewDataSource {
         return view
     }
 
-    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self[section].count
     }
 
-    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self[indexPath].reuseIdentifier, for: indexPath)
         _ = self[indexPath].assignModel(cell)
         delegate?.tableView?(tableView, prepareModelCell: cell, atIndexPath: indexPath)
@@ -143,24 +143,24 @@ extension TableViewDataSource: UITableViewDataSource {
 
     // MARK: Editing
 
-    open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return delegate?.tableView?(tableView, canEditRowAtIndexPath: indexPath) ?? false
     }
 
     // MARK: Moving & Re-Ordering
 
-    open func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+    public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return delegate?.tableView?(tableView, canMoveRowAtIndexPath: indexPath) ?? false
     }
 
     // MARK: Data manipulation
 
-    open func tableView(_ tableView: UITableView, commit commitEditingStyle: UITableViewCell.EditingStyle,
+    public func tableView(_ tableView: UITableView, commit commitEditingStyle: UITableViewCell.EditingStyle,
                         forRowAt forRowAtIndexPath: IndexPath) {
         delegate?.tableView?(tableView, commitEditingStyle: commitEditingStyle, forRowAtIndexPath: forRowAtIndexPath)
     }
 
-    open func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to toIndexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to toIndexPath: IndexPath) {
         delegate?.tableView?(tableView, moveRowAtIndexPath: sourceIndexPath, toIndexPath: toIndexPath)
     }
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-open class CollectionViewDataSource: NSObject {
+final public class CollectionViewDataSource: NSObject {
 
     public typealias DataSourceView = UICollectionView
     public typealias Buffer = [ModelSection<UICollectionView>]
@@ -8,7 +8,7 @@ open class CollectionViewDataSource: NSObject {
 
     private var buffer: Buffer
 
-    open weak var delegate: CollectionViewDataSourceDelegate?
+    public weak var delegate: CollectionViewDataSourceDelegate?
 
     /// Creates a new, empty collection (required by RangeReplaceableCollection)
     override required public init() {
@@ -38,7 +38,7 @@ extension CollectionViewDataSource: ModelCollection {
     /// greater than the last valid subscript argument.
     ///
     /// When you need a range that includes the last element of a collection, use
-    /// the half-open range operator (`..<`) with `endIndex`. The `..<` operator
+    /// the half-public range operator (`..<`) with `endIndex`. The `..<` operator
     /// creates a range that doesn't include the upper bound, so it's always
     /// safe to use with `endIndex`. For example:
     ///
@@ -107,32 +107,32 @@ extension CollectionViewDataSource: ModelCollection {
 
 extension CollectionViewDataSource: UICollectionViewDataSource {
 
-    open func sizeForDecorativeView(inSection section: Int, ofKind kind: UICollectionViewDecorativeKind) -> CGSize? {
+    public func sizeForDecorativeView(inSection section: Int, ofKind kind: UICollectionViewDecorativeKind) -> CGSize? {
         return self[section, kind]?.size
     }
 
-    open func sizeForCellAtIndexPath(_ index: IndexPath) -> CGSize? {
+    public func sizeForCellAtIndexPath(_ index: IndexPath) -> CGSize? {
         return self[index].size
     }
 
     // MARK: UICollectionView DataSource Support
 
-    open func numberOfSections(in collectionView: UICollectionView) -> Int {
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return count
     }
 
-    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self[section].count
     }
 
-    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self[indexPath].reuseIdentifier, for: indexPath)
         _ = self[indexPath].assignModel(cell)
         delegate?.collectionView?(collectionView, prepareModelCell: cell, atIndexPath: indexPath)
         return cell
     }
 
-    open func collectionView(_ collectionView: UICollectionView,
+    public func collectionView(_ collectionView: UICollectionView,
                              viewForSupplementaryElementOfKind kind: String,
                              at indexPath: IndexPath) -> UICollectionReusableView {
 
@@ -149,11 +149,11 @@ extension CollectionViewDataSource: UICollectionViewDataSource {
         return view
     }
 
-    open func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+    public func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
         return delegate?.collectionView?(collectionView, canMoveItemAtIndexPath: indexPath) ?? false
     }
 
-    open func collectionView(_ collectionView: UICollectionView, moveItemAt moveItemAtIndexPath: IndexPath, to toIndexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, moveItemAt moveItemAtIndexPath: IndexPath, to toIndexPath: IndexPath) {
         delegate?.collectionView?(collectionView, moveItemAtIndexPath: moveItemAtIndexPath, toIndexPath: toIndexPath)
     }
 
