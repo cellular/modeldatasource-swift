@@ -23,10 +23,10 @@ public protocol ModelDataSourceViewDisplayable: class {
 
 // MARK: - Defaults
 
-public extension ModelDataSourceViewDisplayable {
+extension ModelDataSourceViewDisplayable {
 
     /// Defaults to the class name of the view. Raw class name only, no module or hash attached.
-    static var reuseIdentifier: String {
+    public static var reuseIdentifier: String {
         return String(describing: self)
     }
 }
