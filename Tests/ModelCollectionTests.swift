@@ -619,7 +619,6 @@ private class ModelCollectionTesting<C: ModelCollection> {
         XCTAssertTrue(collection.isEmpty)
     }
 
-
     func testRemoveAllNotKeeingCapacity() {
         guard let item = createItem?("item"), let capacity = capactiy else {
             return XCTFail("\(collectionName) failed to create items")

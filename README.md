@@ -14,7 +14,7 @@ Every set of data/content and the associated view is stored within a ModelCollec
 
 <p align="center">
     <a href="https://swift.org">
-        <img src="https://img.shields.io/badge/swift-4.2-orange.svg?style=flat" alt="Swift Version">
+        <img src="https://img.shields.io/badge/swift-5.0-orange.svg?style=flat" alt="Swift Version">
     </a>
     <a href="http://travis-ci.com/cellular/modeldatasource-swift/">
         <img src="https://img.shields.io/travis/com/cellular/networking-swift.svg" alt="Travis Build">
@@ -79,7 +79,56 @@ tableView.reloadData()
 
 ## Cusomization
 ---
-If you want to customize the data source handling, either subclass TableViewDataSource/CollectionViewDataSource or create a custom class that conforms to ModelCollection.
+The default classes conforming against ModelCollection are marked as final and thus cannot be subclassed. Reason being that calling mutating functions (defined in ModelCollection) within the subclass was causing compiler errors. However there are still a few options for customizations.
+
+### 1. Extension on ModelCollection
+```swift
+// Extension on all ModelCollections regardless of the DataSourceView.
+extension ModelCollection {
+    func someCustomCode() { ... }
+    mutating func someCustomMutatingCode() { ... }
+}
+
+// Extension bound to all ModelCollections managing UITableViews.
+extension ModelCollection where DataSourceView == UITableView {
+    func someCustomTableViewCode() { ... }
+    mutating func someCustomMutatingTableViewCode() { ... }
+}
+
+```
+### 2. Decorate an existing datasorce
+```swift
+final class CustomDataSource: ModelCollection {
+    typealias DataSourceView = CollectionViewDataSource.DataSourceView
+    typealias Index = CollectionViewDataSource.Index
+    
+    private var dataSource: CollectionViewDatasource
+
+    // MARK: - Required for conforming agains ModelCollection
+
+    init() {
+        dataSource = .init()
+    }
+
+    var startIndex: Index {
+        return dataSource.startIndex
+    }
+
+    var endIndex: Index {
+        return dataSource.endIndex
+    }
+    
+    // ..... 
+
+    // MARK: Custom code
+
+    func someCustomCode() { ... }
+}
+```
+### 3. Full Custom Code
+* Create a custom class / struct and implement every function required to conform against ModelCollection. 
+* Make sure that you resolved all associated types,
+* Store your data somewhere (e.g. Array or Dictionary, TableViewDataSource.Buffer)
 
 ## Requirements
 ---
