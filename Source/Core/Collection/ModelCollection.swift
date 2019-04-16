@@ -11,7 +11,7 @@ public protocol ModelCollection: MutableCollection, RandomAccessCollection, Rang
 
 // MARK: - Convenience
 
-public extension ModelCollection {
+extension ModelCollection {
 
     // MARK: Subscript
 
@@ -27,7 +27,7 @@ public extension ModelCollection {
     ///   `endIndex` property.
     ///
     /// - Complexity: O(1)
-    subscript(indexPath: IndexPath) -> ModelItem<DataSourceView> {
+    public subscript(indexPath: IndexPath) -> ModelItem<DataSourceView> {
         get {
             return self[indexPath.section][indexPath.item]
         }
@@ -50,7 +50,7 @@ public extension ModelCollection {
     ///   - kind: The kind of the decorative view to access.
     ///
     /// - Complexity: O(1)
-    subscript(section: Index, kind: DataSourceView.DecorativeKind) -> ModelDecorative<DataSourceView>? {
+    public subscript(section: Index, kind: DataSourceView.DecorativeKind) -> ModelDecorative<DataSourceView>? {
         get {
             return self[section][kind]
         }
@@ -65,7 +65,7 @@ public extension ModelCollection {
     ///
     /// - Parameter cell: Type of the cell to find.
     /// - Returns: Returns positions of the found cells.
-    func find(_ cell: DataSourceView.Cell.Type) -> [IndexPath] {
+    public func find(_ cell: DataSourceView.Cell.Type) -> [IndexPath] {
         return enumerated().reduce(into: [IndexPath]()) { (result, sectionItem)  in
             let section = sectionItem.offset
             let paths = self[section].find(cell).map { IndexPath.init(item: $0, section: section) }
@@ -77,7 +77,7 @@ public extension ModelCollection {
     ///
     /// - Parameter indexPath: Position of the cell
     /// - Returns: Returns true indexPath equals last valid index in section
-    func isLastCellInSection(_ indexPath: IndexPath) -> Bool {
+    public func isLastCellInSection(_ indexPath: IndexPath) -> Bool {
         return indexPath.item == (self[indexPath.section].endIndex - 1)
     }
 
@@ -85,7 +85,7 @@ public extension ModelCollection {
     ///
     /// - Parameter section: Section index
     /// - Returns: True if the given index is the last section.
-    func isLastSection(_ section: Index) -> Bool {
+    public func isLastSection(_ section: Index) -> Bool {
         return section == (endIndex - 1)
     }
 
@@ -95,7 +95,7 @@ public extension ModelCollection {
     ///
     /// - Returns: The index of the newly created section.
     @discardableResult
-    mutating func append(section: ModelSection<DataSourceView>) -> Index {
+    public mutating func append(section: ModelSection<DataSourceView>) -> Index {
         let index = count
         append(section)
         return index
@@ -117,9 +117,9 @@ public extension ModelCollection {
     ///
     /// - Complexity: O(1) on average, over many calls to append(_:) on the same collection.
     @discardableResult
-    mutating func append(decorative: ModelDecorative<DataSourceView>,
-                         ofKind: DataSourceView.DecorativeKind,
-                         inSection: Index? = nil) -> Index {
+    public mutating func append(decorative: ModelDecorative<DataSourceView>,
+                                ofKind: DataSourceView.DecorativeKind,
+                                inSection: Index? = nil) -> Index {
 
         if isEmpty && inSection == nil { append(.init()) } // Creates a first section on empty data sources
         let sectionToAppend = inSection ?? endIndex - 1 // Either given section or the last section if none givens
@@ -140,7 +140,7 @@ public extension ModelCollection {
     ///
     /// - Complexity: O(1) on average, over many calls to append(_:) on the same collection.
     @discardableResult
-    mutating func append(item: ModelItem<DataSourceView>, inSection: Index? = nil) -> IndexPath {
+    public mutating func append(item: ModelItem<DataSourceView>, inSection: Index? = nil) -> IndexPath {
 
         if isEmpty && inSection == nil { append(.init()) } // Creates a first section on empty data sources
         let sectionToAppend = inSection ?? endIndex - 1  // Either given section or the last section if none given
@@ -163,9 +163,9 @@ public extension ModelCollection {
     ///
     /// - Complexity: O(*n*) where n is the length of the model list.
     @discardableResult
-    mutating func append<M, C: ModelDataSourceViewDisplayable>(contentsOf models: [M],
-                                                               cell: C.Type,
-                                                               inSection: Index? = nil)
+    public mutating func append<M, C: ModelDataSourceViewDisplayable>(contentsOf models: [M],
+                                                                      cell: C.Type,
+                                                                      inSection: Index? = nil)
         -> [IndexPath] where C.Model == M, C.Size == DataSourceView.Dimension {
 
         return models.map { append(item: .init(model: $0, cell: cell), inSection: inSection) }
@@ -187,7 +187,7 @@ public extension ModelCollection {
     ///
     /// - Complexity: O(*n*), where *n* is the length of the collection. If
     ///   `i == endIndex`, this method is equivalent to `append(_:)`.
-    mutating func insert(item: ModelItem<DataSourceView>, indexPath: IndexPath) {
+    public mutating func insert(item: ModelItem<DataSourceView>, indexPath: IndexPath) {
         self[indexPath.section].insert(item, at: indexPath.item)
     }
 
@@ -204,7 +204,7 @@ public extension ModelCollection {
     ///   again. The default value is `true`.
     ///
     /// - Complexity: O(*n*), where *n* is the length of the collection.
-    mutating func removeAll(keepingCapacity keepCapacity: Bool = true) {
+    public mutating func removeAll(keepingCapacity keepCapacity: Bool = true) {
         if !keepCapacity {
             self = .init()
         } else {
@@ -224,7 +224,7 @@ public extension ModelCollection {
     ///   again. The default value is `false`.
     ///
     /// - Complexity: O(*n*), where *n* is the length of the collection.
-    mutating func removeAll(inSection section: Index, keepingCapacity keepCapacity: Bool) {
+    public mutating func removeAll(inSection section: Index, keepingCapacity keepCapacity: Bool) {
         self[section].removeAll(keepingCapacity: keepCapacity)
     }
 
@@ -235,7 +235,7 @@ public extension ModelCollection {
     ///
     /// - Complexity: O(n^2), where n is the length of the collection.
     @discardableResult
-    mutating func removeAll(matching cell: DataSourceView.Cell.Type) -> [IndexPath] {
+    public mutating func removeAll(matching cell: DataSourceView.Cell.Type) -> [IndexPath] {
         let paths = find(cell)
         remove(at: Set(paths))
         return paths
@@ -252,7 +252,7 @@ public extension ModelCollection {
     ///
     /// - Complexity: O(*n*), where *n* is the length of the collection.
     @discardableResult
-    mutating func remove(at indexPath: IndexPath) -> ModelItem<DataSourceView> {
+    public mutating func remove(at indexPath: IndexPath) -> ModelItem<DataSourceView> {
         return self[indexPath.section].remove(at: indexPath.item)
     }
 
@@ -266,7 +266,7 @@ public extension ModelCollection {
     ///
     /// - Complexity: O(*n^2*), where *n* is the length of the collection.
     @discardableResult
-    mutating func remove(at indexPaths: Set<IndexPath>) -> [ModelItem<DataSourceView>] {
+    public mutating func remove(at indexPaths: Set<IndexPath>) -> [ModelItem<DataSourceView>] {
         return indexPaths.sorted(by: >).map {
             remove(at: $0)
         }
@@ -282,7 +282,7 @@ public extension ModelCollection {
     ///
     /// - Complexity: O(*n^2*), where *n* is the length of the collection.
     @discardableResult
-    mutating func remove(at indices: Set<Index>) -> [ModelSection<DataSourceView>] {
+    public mutating func remove(at indices: Set<Index>) -> [ModelSection<DataSourceView>] {
         return indices.sorted(by: >).map { section in
             remove(at: section)
         }
@@ -295,7 +295,7 @@ public extension ModelCollection {
     ///   - inSection: The section which contains the decorative view.
     /// - Returns: Removed Decorative or nil
     @discardableResult
-    mutating func remove(decorative ofKind: DataSourceView.DecorativeKind, inSection: Index) -> ModelDecorative<DataSourceView>? {
+    public mutating func remove(decorative ofKind: DataSourceView.DecorativeKind, inSection: Index) -> ModelDecorative<DataSourceView>? {
         return self[inSection].remove(decorative: ofKind)
     }
 }

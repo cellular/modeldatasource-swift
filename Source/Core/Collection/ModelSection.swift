@@ -110,7 +110,7 @@ extension ModelSection {
 
 // MARK: - Convenience
 
-public extension ModelSection {
+extension ModelSection {
 
     /// Access a specific decirative view.
     ///
@@ -128,7 +128,7 @@ public extension ModelSection {
     ///
     /// - Parameter cell: Type of the cell to find.
     /// - Returns: Returns positions of the found cells.
-    func find(_ cell: DataSourceView.Cell.Type) -> [Index] {
+    public func find(_ cell: DataSourceView.Cell.Type) -> [Index] {
         return enumerated().compactMap { item in
             return item.element.cell == cell ? item.offset : nil
         }
@@ -139,7 +139,7 @@ public extension ModelSection {
     /// - Parameters:
     ///   - ofKind: The type of the decorative view to remove
     /// - Returns: Removed Decorative or nil
-    mutating func remove(decorative ofKind: DataSourceView.DecorativeKind) -> ModelDecorative<DataSourceView>? {
+    public mutating func remove(decorative ofKind: DataSourceView.DecorativeKind) -> ModelDecorative<DataSourceView>? {
         let decorativeToRemove = self[ofKind]
         self[ofKind] = nil
         return decorativeToRemove
