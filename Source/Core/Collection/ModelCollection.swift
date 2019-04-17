@@ -207,8 +207,10 @@ extension ModelCollection {
     public mutating func removeAll(keepingCapacity keepCapacity: Bool = true) {
         if !keepCapacity {
             self = .init()
-        } else {
-            self.removeSubrange(startIndex..<endIndex)
+
+        } else  {
+            let range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
+            self.removeSubrange(range)
         }
     }
 

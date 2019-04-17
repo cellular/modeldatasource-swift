@@ -604,7 +604,10 @@ private class ModelCollectionTesting<C: ModelCollection> {
             return XCTFail("\(collectionName) failed to create items")
         }
 
-        var collection: C = .init(repeatElement(.init(decoratives: [:], items: [item]), count: 10))
+        var collection: C = .init()
+        collection.removeAll() // Try to perform removeAll on an empty collection
+
+        collection = .init(repeatElement(.init(decoratives: [:], items: [item]), count: 10))
 
         XCTAssertFalse(collection.isEmpty)
         let addressBefore: UnsafeMutableRawPointer =  Unmanaged.passUnretained(collection as AnyObject).toOpaque()
@@ -619,12 +622,17 @@ private class ModelCollectionTesting<C: ModelCollection> {
         XCTAssertTrue(collection.isEmpty)
     }
 
+
     func testRemoveAllNotKeeingCapacity() {
         guard let item = createItem?("item"), let capacity = capactiy else {
             return XCTFail("\(collectionName) failed to create items")
         }
 
-        var collection: C = .init(repeatElement(.init(decoratives: [:], items: [item]), count: 10))
+        var collection: C = .init()
+        collection.removeAll(keepingCapacity: false) // Try to perform removeAll on an empty collection
+
+        collection = .init(repeatElement(.init(decoratives: [:], items: [item]), count: 10))
+
         XCTAssertFalse(collection.isEmpty)
         let capacityBefore = capacity(collection)
         let addressBefore: UnsafeMutableRawPointer =  Unmanaged.passUnretained(collection as AnyObject).toOpaque()
