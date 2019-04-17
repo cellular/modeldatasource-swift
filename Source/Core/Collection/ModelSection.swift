@@ -18,7 +18,7 @@ public struct ModelSection<V: ModelDataSourceView>: MutableCollection, RandomAcc
         self.items = items
     }
 
-    public init(decorative: ModelDecorative<DataSourceView>, kind: DataSourceView.DecorativeKind) {
+    public init(decorative: ModelDecorative<DataSourceView>, ofKind kind: DataSourceView.DecorativeKind) {
         self.init(decoratives: [kind: decorative], items: [])
     }
 }

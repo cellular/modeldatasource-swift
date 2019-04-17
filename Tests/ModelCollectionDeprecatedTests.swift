@@ -152,7 +152,7 @@ private class ModelCollectionDeprecatedTesting<C: ModelCollection> {
         XCTAssert(collection.isEmpty, "\(collectionName) is not empty.")
         XCTAssert(deprecatedCollection.isEmpty, "Deprecated \(collectionName) is not empty.")
 
-        let indexIndex = collection.append(section: ModelSection<C.DataSourceView>.init(decorative: modelDecorative, kind: decorativeKind))
+        let indexIndex = collection.append(section: ModelSection<C.DataSourceView>.init(decorative: modelDecorative, ofKind: decorativeKind))
         let deprecatedIndex = deprecatedCollection.appendSection(model, view: view, ofKind: decorativeKind)
 
         XCTAssertFalse(collection.isEmpty, "\(collectionName) failed to append section with decorative.")

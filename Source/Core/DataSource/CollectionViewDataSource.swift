@@ -133,8 +133,8 @@ extension CollectionViewDataSource: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView,
-                             viewForSupplementaryElementOfKind kind: String,
-                             at indexPath: IndexPath) -> UICollectionReusableView {
+                               viewForSupplementaryElementOfKind kind: String,
+                               at indexPath: IndexPath) -> UICollectionReusableView {
 
         guard let decorativeKind = UICollectionViewDecorativeKind(string: kind),
             let modelDecorative = self[indexPath.section, decorativeKind] else {

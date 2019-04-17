@@ -121,8 +121,9 @@ extension TableViewDataSource: UITableViewDataSource {
         return count
     }
 
-    public func tableView(_ tableView: UITableView, decorativeViewOfKind kind: UITableViewDecorativeKind,
-                        inSection section: Int) -> UITableViewHeaderFooterView? {
+    public func tableView(_ tableView: UITableView,
+                          decorativeViewOfKind kind: UITableViewDecorativeKind,
+                          inSection section: Int) -> UITableViewHeaderFooterView? {
 
         guard let identifier = self[section, kind]?.reuseIdentifier else { return nil }
         guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier) else { return nil }
@@ -155,8 +156,10 @@ extension TableViewDataSource: UITableViewDataSource {
 
     // MARK: Data manipulation
 
-    public func tableView(_ tableView: UITableView, commit commitEditingStyle: UITableViewCell.EditingStyle,
-                        forRowAt forRowAtIndexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView,
+                          commit commitEditingStyle: UITableViewCell.EditingStyle,
+                          forRowAt forRowAtIndexPath: IndexPath) {
+
         delegate?.tableView?(tableView, commitEditingStyle: commitEditingStyle, forRowAtIndexPath: forRowAtIndexPath)
     }
 
@@ -164,4 +167,3 @@ extension TableViewDataSource: UITableViewDataSource {
         delegate?.tableView?(tableView, moveRowAtIndexPath: sourceIndexPath, toIndexPath: toIndexPath)
     }
 }
-

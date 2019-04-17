@@ -61,7 +61,7 @@ final class ModelSectionTests: XCTestCase {
 
     func testDecorativeInit() {
         let header: ModelDecorative<UITableView> =  .init(model: "header", view: TestTableViewDecorativeView.self)
-        let modelSection = ModelSection.init(decorative: header, kind: .header)
+        let modelSection = ModelSection.init(decorative: header, ofKind: .header)
         XCTAssertNotNil(modelSection[.header])
         XCTAssertNil(modelSection[.footer])
     }

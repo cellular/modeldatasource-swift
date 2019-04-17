@@ -208,7 +208,7 @@ extension ModelCollection {
         if !keepCapacity {
             self = .init()
 
-        } else  {
+        } else {
             let range = Range(uncheckedBounds: (lower: startIndex, upper: endIndex))
             self.removeSubrange(range)
         }

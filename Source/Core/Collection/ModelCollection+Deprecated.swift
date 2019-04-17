@@ -26,7 +26,7 @@ extension ModelCollection {
                                                                              view: D.Type,
                                                                              ofKind kind: DataSourceView.DecorativeKind)
         -> Int where D.Model == M, D.Size == DataSourceView.Dimension {
-            return append(section: .init(decorative: .init(model: model, view: view), kind: kind))
+            return append(section: .init(decorative: .init(model: model, view: view), ofKind: kind))
     }
 
     @available(*, deprecated, renamed: "append(decorative:ofKind:)")
