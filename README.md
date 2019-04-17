@@ -132,8 +132,8 @@ final class CustomDataSource: ModelCollection {
 
 ## Requirements
 ---
-* iOS 9.3+
-* tvOS 9.2+
+* iOS 10.3+
+* tvOS 10.2+
 
 ## Installation
 ---
