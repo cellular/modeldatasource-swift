@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CellularModelDataSource: f3188e94ba5eb2dd44b80606fb5666712629effa
+  CellularModelDataSource: e9e9a1ccb3459f594df5a47f0ed60341b0d59af5
 
 PODFILE CHECKSUM: 4289aed542f708e14d1f2b245194bb9a4987ce40
 

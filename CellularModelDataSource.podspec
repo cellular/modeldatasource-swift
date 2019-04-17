@@ -26,8 +26,8 @@ Pod::Spec.new do |spec|
  spec.source           = { :git => 'https://github.com/cellular/modeldatasource-swift.git', :tag =>spec.version.to_s }
 
   # Deployment Targets
- spec.ios.deployment_target = '9.3'
- spec.tvos.deployment_target = '9.2'
+ spec.ios.deployment_target = '10.3'
+ spec.tvos.deployment_target = '10.2'
 
     # Core Subspec
 
