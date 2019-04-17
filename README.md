@@ -104,7 +104,7 @@ final class CustomDataSource: ModelCollection {
     
     private var dataSource: CollectionViewDatasource
 
-    // MARK: - Required for conforming agains ModelCollection
+    // MARK: - ModelCollection
 
     init() {
         dataSource = .init()
