@@ -127,8 +127,8 @@ final class CustomDataSource: ModelCollection {
 ```
 ### 3. Full Custom Code
 * Create a custom class / struct and implement every function required to conform against ModelCollection. 
-* Make sure that you resolved all associated types,
-* Store your data somewhere (e.g. Array or Dictionary, TableViewDataSource.Buffer)
+* Make sure that you resolve all associated types.
+* Store your data somewhere (e.g. Array, TableViewDataSource.Buffer)
 
 ## Requirements
 ---
