@@ -20,8 +20,8 @@ DerivedData
 *.ipa
 *IDEWorkspaceChecks.plist
 
+*.xcodeproj
 # Bundler
 .bundle
 
-Carthage
-Pods/
+.swiftpm
