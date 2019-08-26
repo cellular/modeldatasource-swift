@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "ModelDataSource", targets: ["ModelDataSource"]),
     ],
     targets: [
-        .target(name: "ModelDataSource", path: "Source/Core"),
-        .testTarget(name: "ModelDataSourceTests", dependencies: ["ModelDataSource"], path: "Tests")
+        .target(name: "ModelDataSource"),
+        .testTarget(name: "ModelDataSourceTests", dependencies: ["ModelDataSource"])
     ]
 )
