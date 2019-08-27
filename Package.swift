@@ -1,11 +1,10 @@
 // swift-tools-version:5.1
-
 import PackageDescription
 
 let package = Package(
     name: "ModelDataSource",
     platforms: [
-        .iOS(.v12), .tvOS(.v12)
+        .iOS(.v11), .tvOS(.v11)
     ],
     products: [
         .library(name: "ModelDataSource", targets: ["ModelDataSource"]),
