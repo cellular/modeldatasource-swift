@@ -7,7 +7,7 @@ let package = Package(
         .iOS(.v11), .tvOS(.v11)
     ],
     products: [
-        .library(name: "ModelDataSource", targets: ["ModelDataSource"]),
+        .library(name: "ModelDataSource", targets: ["ModelDataSource"])
     ],
     targets: [
         .target(name: "ModelDataSource"),
