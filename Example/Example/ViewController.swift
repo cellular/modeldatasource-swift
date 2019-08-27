@@ -21,12 +21,12 @@ final class ViewController: UIViewController {
 
         let firstHeaderModel: DecorativeView.Model = .init(color: .darkGray, title: "Header 1")
         let firstDecorative: ModelDecorative<UITableView> =  .init(model: firstHeaderModel, view: DecorativeView.self)
-        var firstSection: ModelSection<UITableView> = .init(decorative: firstDecorative, kind: .header)
+        var firstSection: ModelSection<UITableView> = .init(decorative: firstDecorative, ofKind: .header)
         firstSection.append(contentsOf: items)
 
         let secondHeaderModel: DecorativeView.Model = .init(color: .darkGray, title: "Header 2")
         let secondDecorative: ModelDecorative<UITableView> =  .init(model: secondHeaderModel, view: DecorativeView.self)
-        var secondSection: ModelSection<UITableView> = .init(decorative: secondDecorative, kind: .header)
+        var secondSection: ModelSection<UITableView> = .init(decorative: secondDecorative, ofKind: .header)
         secondSection.append(contentsOf: items)
 
         dataSource.append(contentsOf: [firstSection, secondSection])
