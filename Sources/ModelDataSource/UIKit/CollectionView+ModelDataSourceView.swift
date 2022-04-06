@@ -80,10 +80,23 @@ extension UICollectionView: ModelDataSourceView {
 
 // MARK: - ModelDataSourceViewDisplayable
 
-extension ModelDataSourceViewDisplayable where Self: UICollectionView {
+/// We need to add a typealias for each class that implements ModelDataSourceViewDisplayable
+/// to make Xcode13.3 / Swift 5.6 happy. Otherwise we would have to implement
+/// public static var staticSize: Size for every class separatelly.
+/// https://stackoverflow.com/questions/71563154/how-to-implement-static-variables-of-associated-types-in-protocol-extensions-in
+
+extension UICollectionViewCell {
+    public typealias Size = CGSize
+}
+
+extension UICollectionReusableView {
+    public typealias Size = CGSize
+}
+
+extension ModelDataSourceViewDisplayable where Self: UICollectionViewCell {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: CGSize? {
+    public static var staticSize: Size? {
         return nil
     }
 }
@@ -91,7 +104,7 @@ extension ModelDataSourceViewDisplayable where Self: UICollectionView {
 extension ModelDataSourceViewDisplayable where Self: UICollectionReusableView {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: CGSize? {
+    public static var staticSize: Size? {
         return nil
     }
 }
