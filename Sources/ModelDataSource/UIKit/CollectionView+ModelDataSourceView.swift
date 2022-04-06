@@ -85,7 +85,7 @@ extension UICollectionView: ModelDataSourceView {
 /// public static var staticSize: Size for every class separatelly.
 /// https://stackoverflow.com/questions/71563154/how-to-implement-static-variables-of-associated-types-in-protocol-extensions-in
 
-extension UICollectionView {
+extension UICollectionViewCell {
     public typealias Size = CGSize
 }
 
@@ -93,7 +93,7 @@ extension UICollectionReusableView {
     public typealias Size = CGSize
 }
 
-extension ModelDataSourceViewDisplayable where Self: UICollectionView {
+extension ModelDataSourceViewDisplayable where Self: UICollectionViewCell {
 
     /// Optional fixed size definition to override dynamic height calculations.
     public static var staticSize: Size? {
