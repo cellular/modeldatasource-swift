@@ -49,10 +49,23 @@ extension UITableView: ModelDataSourceView {
 
 // MARK: - ModelDataSourceViewDisplayable
 
+/// We need to add a typealias for each class that implements ModelDataSourceViewDisplayable
+/// to make Xcode13.3 / Swift 5.6 happy. Otherwise we have would have to implement
+/// public static var staticSize: Size for every class separatelly.
+/// https://stackoverflow.com/questions/71563154/how-to-implement-static-variables-of-associated-types-in-protocol-extensions-in
+extension UITableViewCell {
+    public typealias Size = CGFloat
+}
+
+extension UITableViewHeaderFooterView {
+    public typealias Size = CGFloat
+}
+
+
 extension ModelDataSourceViewDisplayable where Self: UITableViewCell {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: CGFloat? {
+    public static var staticSize: Size? {
         return nil
     }
 }
@@ -60,7 +73,7 @@ extension ModelDataSourceViewDisplayable where Self: UITableViewCell {
 extension ModelDataSourceViewDisplayable where Self: UITableViewHeaderFooterView {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: CGFloat? {
+    public static var staticSize: Size? {
         return nil
     }
 }
