@@ -81,9 +81,10 @@ extension UICollectionView: ModelDataSourceView {
 // MARK: - ModelDataSourceViewDisplayable
 
 /// We need to add a typealias for each class that implements ModelDataSourceViewDisplayable
-/// to make Xcode13.3 / Swift 5.6 happy. Otherwise we have would have to implement
+/// to make Xcode13.3 / Swift 5.6 happy. Otherwise we would have to implement
 /// public static var staticSize: Size for every class separatelly.
 /// https://stackoverflow.com/questions/71563154/how-to-implement-static-variables-of-associated-types-in-protocol-extensions-in
+
 extension UICollectionView {
     public typealias Size = CGSize
 }
@@ -91,7 +92,6 @@ extension UICollectionView {
 extension UICollectionReusableView {
     public typealias Size = CGSize
 }
-
 
 extension ModelDataSourceViewDisplayable where Self: UICollectionView {
 
