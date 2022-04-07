@@ -86,11 +86,11 @@ extension UICollectionView: ModelDataSourceView {
 /// https://stackoverflow.com/questions/71563154/how-to-implement-static-variables-of-associated-types-in-protocol-extensions-in
 
 extension UICollectionViewCell {
-    public typealias Size = CGSize
+    public typealias ModelDataSourceViewDisplayableDimension = CGSize
 }
 
 extension UICollectionReusableView {
-    public typealias Size = CGSize
+    public typealias ModelDataSourceViewDisplayableDimension = CGSize
 }
 
 extension ModelDataSourceViewDisplayable where Self: UICollectionViewCell {

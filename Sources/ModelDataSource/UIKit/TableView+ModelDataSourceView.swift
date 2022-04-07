@@ -55,11 +55,11 @@ extension UITableView: ModelDataSourceView {
 /// https://stackoverflow.com/questions/71563154/how-to-implement-static-variables-of-associated-types-in-protocol-extensions-in
 
 extension UITableViewCell {
-    public typealias Size = CGFloat
+    public typealias ModelDataSourceViewDisplayableDimension = CGFloat
 }
 
 extension UITableViewHeaderFooterView {
-    public typealias Size = CGFloat
+    public typealias ModelDataSourceViewDisplayableDimension = CGFloat
 }
 
 extension ModelDataSourceViewDisplayable where Self: UITableViewCell {
