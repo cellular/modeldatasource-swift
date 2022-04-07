@@ -430,7 +430,7 @@ private class ModelCollectionTesting<C: ModelCollection> {
         }
     }
 
-    func testAppendItemList<Cell: TestModelDataSourceViewDisplayable>(cell: Cell.Type) where Cell.Size == C.DataSourceView.Dimension {
+    func testAppendItemList<Cell: TestModelDataSourceViewDisplayable>(cell: Cell.Type) where Cell.ModelDataSourceViewDisplayableDimension == C.DataSourceView.Dimension {
         var collection: C = .init()
         let modelCount = 5
         let models: [Cell.Model] = .init(repeating: Cell.testModel, count: modelCount)

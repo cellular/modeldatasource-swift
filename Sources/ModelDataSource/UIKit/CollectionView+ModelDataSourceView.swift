@@ -86,17 +86,17 @@ extension UICollectionView: ModelDataSourceView {
 /// https://stackoverflow.com/questions/71563154/how-to-implement-static-variables-of-associated-types-in-protocol-extensions-in
 
 extension UICollectionViewCell {
-    public typealias Size = CGSize
+    public typealias ModelDataSourceViewDisplayableDimension = CGSize
 }
 
 extension UICollectionReusableView {
-    public typealias Size = CGSize
+    public typealias ModelDataSourceViewDisplayableDimension = CGSize
 }
 
 extension ModelDataSourceViewDisplayable where Self: UICollectionViewCell {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: Size? {
+    public static var staticSize: ModelDataSourceViewDisplayableDimension? {
         return nil
     }
 }
@@ -104,7 +104,7 @@ extension ModelDataSourceViewDisplayable where Self: UICollectionViewCell {
 extension ModelDataSourceViewDisplayable where Self: UICollectionReusableView {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: Size? {
+    public static var staticSize: ModelDataSourceViewDisplayableDimension? {
         return nil
     }
 }
