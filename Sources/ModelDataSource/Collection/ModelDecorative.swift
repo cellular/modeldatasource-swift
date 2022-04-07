@@ -17,7 +17,7 @@ public struct ModelDecorative<V: ModelDataSourceView> {
     /// Assigns the model to the given decorative. Returns true if the model was assigned successfully.
     public let assignModel: (V.DecorativeView) -> Bool
 
-    public init<M, D: ModelDataSourceViewDisplayable>(model: M, view: D.Type) where D.Model == M, D.Size == V.Dimension {
+    public init<M, D: ModelDataSourceViewDisplayable>(model: M, view: D.Type) where D.Model == M, D.ModelDataSourceViewDisplayableDimension == V.Dimension {
         self.model = model
         self.view = view
         self.reuseIdentifier = view.reuseIdentifier

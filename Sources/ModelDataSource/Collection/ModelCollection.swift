@@ -166,7 +166,7 @@ extension ModelCollection {
     public mutating func append<M, C: ModelDataSourceViewDisplayable>(contentsOf models: [M],
                                                                       cell: C.Type,
                                                                       inSection: Index? = nil)
-        -> [IndexPath] where C.Model == M, C.Size == DataSourceView.Dimension {
+        -> [IndexPath] where C.Model == M, C.ModelDataSourceViewDisplayableDimension == DataSourceView.Dimension {
 
         return models.map { append(item: .init(model: $0, cell: cell), inSection: inSection) }
     }

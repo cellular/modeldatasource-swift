@@ -141,7 +141,7 @@ private class ModelCollectionDeprecatedTesting<C: ModelCollection> {
     }
 
     func testAppendSectionWithDecorative<M, D: ModelDataSourceViewDisplayable>(_ model: M, view: D.Type)
-        where M == D.Model, D.Size == C.DataSourceView.Dimension {
+        where M == D.Model, D.ModelDataSourceViewDisplayableDimension == C.DataSourceView.Dimension {
 
         guard let decorativeKind = decorativeKinds?().first,  let modelDecorative = createDecorative?("Decorative") else {
             return XCTFail("\(collectionName) failed to create decoratives.")
@@ -162,7 +162,7 @@ private class ModelCollectionDeprecatedTesting<C: ModelCollection> {
         XCTAssertNotNil(deprecatedCollection.first?[decorativeKind], "Deprecated \(collectionName) failed to create decorative.")
     }
 
-    func testAppendDecorative<M, D: ModelDataSourceViewDisplayable>(_ model: M, view: D.Type) where M == D.Model, D.Size == C.DataSourceView.Dimension {
+    func testAppendDecorative<M, D: ModelDataSourceViewDisplayable>(_ model: M, view: D.Type) where M == D.Model, D.ModelDataSourceViewDisplayableDimension == C.DataSourceView.Dimension {
 
         guard let decorativeKind = decorativeKinds?().first,  let modelDecorative = createDecorative?("Decorative") else {
             return XCTFail("\(collectionName) failed to create decoratives.")
@@ -199,7 +199,7 @@ private class ModelCollectionDeprecatedTesting<C: ModelCollection> {
     }
 
     func testAppendItem<M, Cell: ModelDataSourceViewDisplayable>(_ model: M, cell: Cell.Type)
-        where Cell.Model == M, Cell.Size == C.DataSourceView.Dimension {
+        where Cell.Model == M, Cell.ModelDataSourceViewDisplayableDimension == C.DataSourceView.Dimension {
 
         guard let modelItem = createItem?("Item") else {
             return XCTFail("\(collectionName) failed to create item.")
@@ -236,7 +236,7 @@ private class ModelCollectionDeprecatedTesting<C: ModelCollection> {
     }
 
     func testAppendContentsOfItems<M, Cell: ModelDataSourceViewDisplayable>(_ models: [M], cell: Cell.Type)
-        where Cell.Model == M, Cell.Size == C.DataSourceView.Dimension {
+        where Cell.Model == M, Cell.ModelDataSourceViewDisplayableDimension == C.DataSourceView.Dimension {
 
         var collection: C = .init()
         var deprecatedCollection: C = .init()
@@ -269,7 +269,7 @@ private class ModelCollectionDeprecatedTesting<C: ModelCollection> {
     }
 
     func testInsertItemAtIndexPath<M, Cell: ModelDataSourceViewDisplayable>(_ model: M, insertCell: Cell.Type)
-        where Cell.Model == M, Cell.Size == C.DataSourceView.Dimension {
+        where Cell.Model == M, Cell.ModelDataSourceViewDisplayableDimension == C.DataSourceView.Dimension {
 
         guard let modelItem = createItem?("Item"), let searchItem = createSearchItem?("searchItem"),
             let searchClass = searchItemClass else {

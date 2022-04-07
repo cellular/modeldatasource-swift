@@ -65,7 +65,7 @@ extension UITableViewHeaderFooterView {
 extension ModelDataSourceViewDisplayable where Self: UITableViewCell {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: Size? {
+    public static var staticSize: ModelDataSourceViewDisplayableDimension? {
         return nil
     }
 }
@@ -73,7 +73,7 @@ extension ModelDataSourceViewDisplayable where Self: UITableViewCell {
 extension ModelDataSourceViewDisplayable where Self: UITableViewHeaderFooterView {
 
     /// Optional fixed size definition to override dynamic height calculations.
-    public static var staticSize: Size? {
+    public static var staticSize: ModelDataSourceViewDisplayableDimension? {
         return nil
     }
 }

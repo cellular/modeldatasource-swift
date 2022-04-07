@@ -6,7 +6,7 @@ public protocol ModelDataSourceViewDisplayable: class {
     associatedtype Model
 
     /// The variable/dynamic dimension of the cell for sizing calculations.
-    associatedtype Size
+    associatedtype ModelDataSourceViewDisplayableDimension
 
     /// The source file of the decorative view. Used to register/dequeue & calculate size of the receiver.
     static var source: Source<Self> { get }
@@ -15,7 +15,7 @@ public protocol ModelDataSourceViewDisplayable: class {
     static var reuseIdentifier: String { get }
 
     /// Optional fixed size definition to override dynamic height calculations.
-    static var staticSize: Size? { get }
+    static var staticSize: ModelDataSourceViewDisplayableDimension? { get }
 
     /// Model that was associated with the cell on initialization or reuse.
     var model: Model? { get set }

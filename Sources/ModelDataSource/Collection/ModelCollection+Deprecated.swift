@@ -25,7 +25,7 @@ extension ModelCollection {
     public mutating func appendSection<M, D: ModelDataSourceViewDisplayable>(_ model: M,
                                                                              view: D.Type,
                                                                              ofKind kind: DataSourceView.DecorativeKind)
-        -> Int where D.Model == M, D.Size == DataSourceView.Dimension {
+        -> Int where D.Model == M, D.ModelDataSourceViewDisplayableDimension == DataSourceView.Dimension {
             return append(section: .init(decorative: .init(model: model, view: view), ofKind: kind))
     }
 
@@ -35,7 +35,7 @@ extension ModelCollection {
                                                                       view: D.Type,
                                                                       ofKind: DataSourceView.DecorativeKind,
                                                                       inSection: Index? = nil)
-        -> Index where D.Model == M, D.Size == DataSourceView.Dimension {
+        -> Index where D.Model == M, D.ModelDataSourceViewDisplayableDimension == DataSourceView.Dimension {
 
          return append(decorative: .init(model: model, view: view), ofKind: ofKind)
     }
@@ -43,7 +43,7 @@ extension ModelCollection {
     @available(*, deprecated, renamed: "append(item:inSection:)")
     @discardableResult
     public mutating func append<M, C: ModelDataSourceViewDisplayable>(_ model: M, cell: C.Type, inSection: Index? = nil)
-        -> IndexPath where C.Model == M, C.Size == DataSourceView.Dimension {
+        -> IndexPath where C.Model == M, C.ModelDataSourceViewDisplayableDimension == DataSourceView.Dimension {
 
             return append(item: .init(model: model, cell: cell), inSection: inSection)
     }
@@ -53,14 +53,14 @@ extension ModelCollection {
     public mutating func appendContentsOf<M, C: ModelDataSourceViewDisplayable>(_ models: [M],
                                                                                 cell: C.Type,
                                                                                 inSection: Index? = nil) -> [IndexPath]
-                                                                                where C.Model == M, C.Size == DataSourceView.Dimension {
+                                                                                where C.Model == M, C.ModelDataSourceViewDisplayableDimension == DataSourceView.Dimension {
 
             return append(contentsOf: models, cell: cell, inSection: inSection)
     }
 
     @available(*, deprecated, renamed: "insert(item:index:)")
     public mutating func insert<M, C: ModelDataSourceViewDisplayable>(_ model: M, cell: C.Type, index: IndexPath) where C.Model == M,
-        C.Size == DataSourceView.Dimension {
+        C.ModelDataSourceViewDisplayableDimension == DataSourceView.Dimension {
 
         insert(item: .init(model: model, cell: cell), indexPath: index)
     }
